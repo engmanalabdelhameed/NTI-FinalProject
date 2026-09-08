@@ -1,0 +1,69 @@
+[
+  {
+    "id": 1001,
+    "userId": 2,
+    "date": "2026-08-20",
+    "status": "Delivered",
+    "total": 680,
+    "items": [
+      {
+        "bookId": 1,
+        "quantity": 1,
+        "price": 250
+      },
+      {
+        "bookId": 2,
+        "quantity": 1,
+        "price": 180
+      },
+      {
+        "bookId": 3,
+        "quantity": 1,
+        "price": 220
+      }
+    ],
+    "shippingAddress": {
+      "street": "15 El-Nasr Street",
+      "city": "Alexandria",
+      "country": "Egypt"
+    }
+  },
+  {
+    "id": 1002,
+    "userId": 3,
+    "date": "2026-08-29",
+    "status": "Shipped",
+    "total": 640,
+    "items": [
+      {
+        "bookId": 4,
+        "quantity": 2,
+        "price": 320
+      }
+    ],
+    "shippingAddress": {
+      "street": "8 Tahrir Street",
+      "city": "Cairo",
+      "country": "Egypt"
+    }
+  },
+  {
+    "id": 1003,
+    "userId": 4,
+    "date": "2026-09-05",
+    "status": "Processing",
+    "total": 450,
+    "items": [
+      {
+        "bookId": 5,
+        "quantity": 1,
+        "price": 450
+      }
+    ],
+    "shippingAddress": {
+      "street": "22 El-Gomhoria Street",
+      "city": "Mansoura",
+      "country": "Egypt"
+    }
+  }
+]

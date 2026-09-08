@@ -1,0 +1,41 @@
+[
+  {
+    "userId": 2,
+    "items": [
+      {
+        "bookId": 1,
+        "quantity": 2
+      },
+      {
+        "bookId": 5,
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "userId": 3,
+    "items": [
+      {
+        "bookId": 4,
+        "quantity": 1
+      },
+      {
+        "bookId": 6,
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "items": [
+      {
+        "bookId": 3,
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "userId": 5,
+    "items": []
+  }
+]
