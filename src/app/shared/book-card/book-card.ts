@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from '../../core/models/book.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-card',
   standalone: true,
+  imports: [CurrencyPipe],
   templateUrl: './book-card.html',
   styleUrl: './book-card.css'
 })

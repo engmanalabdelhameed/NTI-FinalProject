@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-book-info',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet],
   templateUrl: './book-info.html',
   styleUrl: './book-info.css'
 })
