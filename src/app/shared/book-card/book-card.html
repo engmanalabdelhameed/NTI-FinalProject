@@ -1,1 +1,86 @@
-<p>book-card works!</p>
+<article class="book-card">
+
+  <div class="book-image">
+
+    @if (badge) {
+      <span
+        class="book-badge"
+        [class.new]="badgeType === 'new'"
+        [class.sale]="badgeType === 'sale'"
+      >
+        {{ badge }}
+      </span>
+    }
+
+    <div class="cover">
+      <img
+        [src]="book.image"
+        [alt]="book.title"
+      >
+    </div>
+
+    <button
+      class="wishlist"
+      [class.active]="isWishlisted"
+      (click)="onWishlistClick()"
+      [attr.aria-label]="
+        isWishlisted
+          ? 'Remove from wishlist'
+          : 'Add to wishlist'
+      "
+    >
+      {{ isWishlisted ? '♥' : '♡' }}
+    </button>
+
+  </div>
+
+  <div class="book-info">
+
+    <span class="book-category">
+      {{ book.category }}
+    </span>
+
+    <h3>
+      {{ book.title }}
+    </h3>
+
+    <p class="author">
+      {{ book.author }}
+    </p>
+
+    <div class="rating">
+
+      @for (star of getStars(); track star) {
+
+        @if (star <= book.rating) {
+          <span class="star filled">★</span>
+        } @else {
+          <span class="star">☆</span>
+        }
+
+      }
+
+      <span class="rating-number">
+        {{ book.rating }}
+      </span>
+
+    </div>
+
+    <div class="book-bottom">
+
+      <span class="price">
+        {{ book.price | currency:'EGP':'symbol':'1.2-2' }}
+      </span>
+
+      <button
+        class="add-cart"
+        (click)="onAddToCart()"
+      >
+        + Cart
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
