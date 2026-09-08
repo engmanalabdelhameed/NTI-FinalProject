@@ -1,60 +1,123 @@
-/* Admin page */
 :host {
-    display: block;
-    min-height: 100vh;
-    background-color: #f5f6fa;
-    padding: 30px 50px;
-    box-sizing: border-box;
+  display: block;
 }
 
-/* Remove the default paragraph look */
-p {
-    color: #777;
-    margin: 0 0 5px;
-    font-size: 14px;
+/* Admin page */
+
+.admin-page {
+  min-height: 100vh;
+  background-color: #f6f7fb;
+  padding: 35px 50px;
+  box-sizing: border-box;
 }
 
-/* Page title */
-h1 {
-    margin: 0 0 25px;
-    color: #222;
-    font-size: 32px;
+/* Header */
+
+.admin-header {
+  margin-bottom: 25px;
+}
+
+.admin-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #c27a4a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.admin-header h1 {
+  margin: 0;
+  color: #172554;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.admin-header p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 14px;
 }
 
 /* Admin navigation */
-nav {
-    background-color: #222;
-    padding: 0 25px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+
+.admin-nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #ffffff;
+  padding: 7px;
+  border: 1px solid #e3e7f0;
+  border-radius: 9px;
+  box-shadow: 0 4px 15px rgba(23, 37, 84, 0.05);
+  margin-bottom: 25px;
 }
 
 /* Navigation links */
-nav a {
-    color: #ddd;
-    text-decoration: none;
-    padding: 16px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    transition: 0.3s;
+
+.admin-nav a {
+  color: #64748b;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-/* Hover */
-nav a:hover {
-    color: white;
-    background-color: #333;
+.admin-nav a:hover {
+  color: #172554;
+  background-color: #f7f8fc;
 }
 
 /* Active link */
-nav a.active {
-    color: white;
-    background-color: #3498db;
+
+.admin-nav a.active {
+  color: #ffffff;
+  background-color: #172554;
 }
 
-/* Content below navbar */
-router-outlet {
-    display: block;
+.admin-nav a.active:hover {
+  color: #ffffff;
+  background-color: #0f1b42;
+}
+
+/* Content */
+
+.admin-content {
+  background-color: #ffffff;
+  border: 1px solid #e3e7f0;
+  border-radius: 10px;
+  min-height: 400px;
+  padding: 25px;
+}
+
+/* Responsive */
+
+@media (max-width: 750px) {
+  .admin-page {
+    padding: 25px;
+  }
+
+  .admin-nav {
+    overflow-x: auto;
+  }
+
+  .admin-nav a {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .admin-page {
+    padding: 20px 15px;
+  }
+
+  .admin-header h1 {
+    font-size: 26px;
+  }
+
+  .admin-content {
+    padding: 18px;
+  }
 }
