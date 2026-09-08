@@ -1,0 +1,60 @@
+/* Admin page */
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: #f5f6fa;
+    padding: 30px 50px;
+    box-sizing: border-box;
+}
+
+/* Remove the default paragraph look */
+p {
+    color: #777;
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+/* Page title */
+h1 {
+    margin: 0 0 25px;
+    color: #222;
+    font-size: 32px;
+}
+
+/* Admin navigation */
+nav {
+    background-color: #222;
+    padding: 0 25px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Navigation links */
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+/* Hover */
+nav a:hover {
+    color: white;
+    background-color: #333;
+}
+
+/* Active link */
+nav a.active {
+    color: white;
+    background-color: #3498db;
+}
+
+/* Content below navbar */
+router-outlet {
+    display: block;
+}

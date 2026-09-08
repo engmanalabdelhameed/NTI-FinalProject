@@ -1,0 +1,48 @@
+<nav class="navbar">
+
+  <div class="navbar-brand">
+    <a routerLink="/">BookStore</a>
+  </div>
+
+  <div class="navbar-links">
+
+    <a routerLink="/" routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+      Home
+    </a>
+
+    <a routerLink="/books" routerLinkActive="active">
+      Books
+    </a>
+
+    <a routerLink="/wishlist" routerLinkActive="active">
+      Wishlist
+    </a>
+
+    <a routerLink="/orders" routerLinkActive="active">
+      My Orders
+    </a>
+
+    <a routerLink="/about" routerLinkActive="active">
+      About
+    </a>
+
+  </div>
+
+  <div class="navbar-actions">
+
+    <a routerLink="/cart" class="cart-link">
+      Cart
+    </a>
+
+    <a routerLink="/profile" class="profile-link">
+      Profile
+    </a>
+
+    <a routerLink="/auth/login" class="login-btn">
+      Login
+    </a>
+
+  </div>
+
+</nav>
