@@ -1,1 +1,150 @@
-<p>books works!</p>
+<div class="books-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div>
+      <span class="page-label">BOOK MANAGEMENT</span>
+
+      <h2>Books</h2>
+
+      <p>
+        View and manage the books available in your store.
+      </p>
+    </div>
+
+    <div class="book-count">
+      {{ books.length }} Books
+    </div>
+
+  </div>
+
+
+  <!-- Books Table -->
+  <div class="books-table-container">
+
+    @if (books.length > 0) {
+
+      <table class="books-table">
+
+        <thead>
+          <tr>
+            <th>Book</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for (book of books; track book.id) {
+
+            <tr>
+
+              <!-- Book -->
+              <td>
+
+                <div class="book-info">
+
+                  <div class="book-cover">
+                    <img
+                      [src]="book.image"
+                      [alt]="book.title"
+                    >
+                  </div>
+
+                  <div class="book-details">
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <!-- Category -->
+              <td>
+                <span class="category">
+                  {{ book.category }}
+                </span>
+              </td>
+
+
+              <!-- Price -->
+              <td>
+                <span class="price">
+                  {{ book.price | currency:'EGP':'symbol':'1.2-2' }}
+                </span>
+              </td>
+
+
+              <!-- Stock -->
+              <td>
+
+                <span
+                  class="stock"
+                  [class.low-stock]="book.stock <= 5"
+                  [class.out-of-stock]="book.stock === 0"
+                >
+
+                  @if (book.stock === 0) {
+                    Out of stock
+                  } @else {
+                    {{ book.stock }}
+                  }
+
+                </span>
+
+              </td>
+
+
+              <!-- Rating -->
+              <td>
+
+                <div class="rating">
+
+                  <span class="stars">
+                    ★
+                  </span>
+
+                  <span>
+                    {{ book.rating }}
+                  </span>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    } @else {
+
+      <!-- Empty State -->
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          📚
+        </div>
+
+        <h3>No Books Found</h3>
+
+        <p>
+          There are currently no books in your collection.
+        </p>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

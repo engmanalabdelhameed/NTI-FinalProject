@@ -7,7 +7,7 @@
     "price": 250,
     "stock": 12,
     "rating": 4.8,
-    "image": "assets/images/books/the-hobbit.jpg",
+    "image": "Assets/images/books/the-hobbit.jpg",
     "description": "Bilbo Baggins embarks on an unexpected adventure with a company of dwarves.",
     "isbn": "9780547928227",
     "publishedYear": 1937
@@ -20,7 +20,7 @@
     "price": 180,
     "stock": 20,
     "rating": 4.7,
-    "image": "assets/images/books/1984.jpg",
+    "image": "Assets/images/books/1984.jpg",
     "description": "A dystopian story about surveillance, propaganda, and totalitarian control.",
     "isbn": "9780451524935",
     "publishedYear": 1949
@@ -33,7 +33,7 @@
     "price": 220,
     "stock": 15,
     "rating": 4.6,
-    "image": "assets/images/books/pride-and-prejudice.jpg",
+    "image": "Assets/images/books/pride-and-prejudice.jpg",
     "description": "Elizabeth Bennet navigates love, family, and social expectations.",
     "isbn": "9780141439518",
     "publishedYear": 1813
@@ -46,7 +46,7 @@
     "price": 320,
     "stock": 10,
     "rating": 4.9,
-    "image": "assets/images/books/atomic-habits.jpg",
+    "image": "Assets/images/books/atomic-habits.jpg",
     "description": "A practical guide to building good habits and breaking bad ones.",
     "isbn": "9780735211292",
     "publishedYear": 2018
@@ -59,7 +59,7 @@
     "price": 450,
     "stock": 8,
     "rating": 4.7,
-    "image": "assets/images/books/clean-code.jpg",
+    "image": "Assets/images/books/clean-code.jpg",
     "description": "Principles and practices for writing clean and maintainable software.",
     "isbn": "9780132350884",
     "publishedYear": 2008
@@ -72,7 +72,7 @@
     "price": 200,
     "stock": 18,
     "rating": 4.5,
-    "image": "assets/images/books/the-alchemist.jpg",
+    "image": "Assets/images/books/the-alchemist.jpg",
     "description": "A young shepherd follows his dream in search of a hidden treasure.",
     "isbn": "9780062315007",
     "publishedYear": 1988
@@ -85,7 +85,7 @@
     "price": 300,
     "stock": 14,
     "rating": 4.9,
-    "image": "assets/images/books/harry-potter.jpg",
+    "image": "Assets/images/books/harry-potter.jpg",
     "description": "A young wizard discovers his magical heritage and begins his journey at Hogwarts.",
     "isbn": "9780747532699",
     "publishedYear": 1997
@@ -98,7 +98,7 @@
     "price": 280,
     "stock": 11,
     "rating": 4.6,
-    "image": "assets/images/books/psychology-of-money.jpg",
+    "image": "Assets/images/books/psychology-of-money.jpg",
     "description": "Lessons about wealth, behavior, risk, and making better financial decisions.",
     "isbn": "9780857197689",
     "publishedYear": 2020
@@ -111,7 +111,7 @@
     "price": 230,
     "stock": 9,
     "rating": 4.8,
-    "image": "assets/images/books/to-kill-a-mockingbird.jpg",
+    "image": "Assets/images/books/to-kill-a-mockingbird.jpg",
     "description": "A powerful story about justice, morality, and childhood in the American South.",
     "isbn": "9780061120084",
     "publishedYear": 1960
@@ -124,7 +124,7 @@
     "price": 500,
     "stock": 6,
     "rating": 4.8,
-    "image": "assets/images/books/pragmatic-programmer.jpg",
+    "image": "Assets/images/books/pragmatic-programmer.jpg",
     "description": "Practical advice and techniques for becoming a better software developer.",
     "isbn": "9780135957059",
     "publishedYear": 1999

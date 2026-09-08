@@ -8,7 +8,7 @@ import { Book } from '../models/book.model';
 })
 export class BookService {
 
-  private booksUrl = 'assets/data/books.json';
+  private booksUrl = 'Assets/data/books.json';
 
   constructor(private http: HttpClient) {}
 
