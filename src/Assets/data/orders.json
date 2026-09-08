@@ -4,7 +4,15 @@
     "userId": 2,
     "date": "2026-08-20",
     "status": "Delivered",
+    "paymentStatus": "Paid",
+    "paymentMethod": "Credit Card",
+    "shippingMethod": "Standard Shipping",
+    "subtotal": 650,
+    "shippingCost": 30,
+    "discount": 0,
     "total": 680,
+    "trackingNumber": "TRK1001EG",
+    "estimatedDelivery": "2026-08-25",
     "items": [
       {
         "bookId": 1,
@@ -25,6 +33,7 @@
     "shippingAddress": {
       "street": "15 El-Nasr Street",
       "city": "Alexandria",
+      "state": "Alexandria",
       "country": "Egypt"
     }
   },
@@ -33,7 +42,15 @@
     "userId": 3,
     "date": "2026-08-29",
     "status": "Shipped",
-    "total": 640,
+    "paymentStatus": "Paid",
+    "paymentMethod": "Cash on Delivery",
+    "shippingMethod": "Express Shipping",
+    "subtotal": 640,
+    "shippingCost": 40,
+    "discount": 0,
+    "total": 680,
+    "trackingNumber": "TRK1002EG",
+    "estimatedDelivery": "2026-09-02",
     "items": [
       {
         "bookId": 4,
@@ -44,6 +61,7 @@
     "shippingAddress": {
       "street": "8 Tahrir Street",
       "city": "Cairo",
+      "state": "Cairo",
       "country": "Egypt"
     }
   },
@@ -52,7 +70,15 @@
     "userId": 4,
     "date": "2026-09-05",
     "status": "Processing",
+    "paymentStatus": "Pending",
+    "paymentMethod": "Credit Card",
+    "shippingMethod": "Standard Shipping",
+    "subtotal": 450,
+    "shippingCost": 30,
+    "discount": 30,
     "total": 450,
+    "trackingNumber": null,
+    "estimatedDelivery": "2026-09-10",
     "items": [
       {
         "bookId": 5,
@@ -63,6 +89,7 @@
     "shippingAddress": {
       "street": "22 El-Gomhoria Street",
       "city": "Mansoura",
+      "state": "Dakahlia",
       "country": "Egypt"
     }
   }

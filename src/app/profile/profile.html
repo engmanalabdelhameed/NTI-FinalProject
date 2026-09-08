@@ -1,1 +1,162 @@
-<p>profile works!</p>
+<div class="profile-page">
+
+  <div class="page-header">
+    <div>
+      <h1>My Profile</h1>
+      <p class="subtitle">
+        Manage your personal information and account details.
+      </p>
+    </div>
+  </div>
+
+  @if (currentUser !== null) {
+
+    <div class="profile-container">
+
+      <section class="profile-card">
+
+        <div class="profile-top">
+
+          <div class="profile-image-wrapper">
+            <img
+              [src]="currentUser.profileImage"
+              [alt]="currentUser.firstName"
+              class="profile-image"
+            />
+          </div>
+
+          <div class="profile-intro">
+            <h2>
+              {{ currentUser.firstName }}
+              {{ currentUser.lastName }}
+            </h2>
+
+            <p class="username">
+              {{'@' + currentUser.username }}
+            </p>
+
+            <span class="role-badge">
+              {{ currentUser.role }}
+            </span>
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <h3>Personal Information</h3>
+
+          <div class="info-grid">
+
+            <div class="info-item">
+              <span class="label">First Name</span>
+              <span class="value">
+                {{ currentUser.firstName }}
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Last Name</span>
+              <span class="value">
+                {{ currentUser.lastName }}
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Username</span>
+              <span class="value">
+                {{ currentUser.username }}
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Email</span>
+              <span class="value">
+                {{ currentUser.email }}
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Phone</span>
+              <span class="value">
+                {{ currentUser.phone }}
+              </span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Member Since</span>
+              <span class="value">
+                {{ currentUser.createdAt }}
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+        @if (currentUser.role !== 'admin' && currentUser.address) {
+
+          <div class="section">
+
+            <h3>Shipping Address</h3>
+
+            <div class="address-box">
+
+              <p>
+                <strong>Street:</strong>
+                {{ currentUser.address.street }}
+              </p>
+
+              <p>
+                <strong>City:</strong>
+                {{ currentUser.address.city }}
+              </p>
+
+              <p>
+                <strong>State:</strong>
+                {{ currentUser.address.state }}
+              </p>
+
+              <p>
+                <strong>Country:</strong>
+                {{ currentUser.address.country }}
+              </p>
+
+            </div>
+
+          </div>
+
+        }
+
+        @if (currentUser.role === 'admin') {
+
+          <div class="admin-notice">
+
+            <h3>Administrator Account</h3>
+
+            <p>
+              This account has administrator access to The Nile Reader.
+            </p>
+
+            <div class="admin-role">
+              <span>Account Role</span>
+              <strong>{{ currentUser.role }}</strong>
+            </div>
+
+          </div>
+
+        }
+
+      </section>
+
+    </div>
+
+  } @else {
+
+    <div class="loading">
+      <p>Loading profile...</p>
+    </div>
+
+  }
+
+</div>

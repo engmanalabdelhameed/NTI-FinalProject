@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { Book } from '../../core/models/book.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-card',
