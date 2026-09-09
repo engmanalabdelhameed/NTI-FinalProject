@@ -1,0 +1,37 @@
+.about-container {
+  width: min(800px, calc(100% - 40px));
+  margin: 40px auto;
+  padding: 40px;
+  background: var(--paper);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.about-container h1 {
+  font-family: 'Playfair Display', serif;
+  color: var(--ink);
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.about-container h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--ink);
+  font-size: 20px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.about-description p {
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.contact-info p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin: 8px 0;
+}
