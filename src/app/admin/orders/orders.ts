@@ -6,7 +6,6 @@ import { OrderService } from '../../core/services/order.service';
 
 @Component({
   selector: 'app-orders',
-
   standalone: true,
 
   imports: [CurrencyPipe, DatePipe],

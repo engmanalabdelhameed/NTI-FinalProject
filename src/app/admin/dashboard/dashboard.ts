@@ -1,5 +1,5 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 
 import { Book } from '../../core/models/book.model';
 import { Order } from '../../core/models/order.model';
@@ -8,215 +8,315 @@ import { BookService } from '../../core/services/book.service';
 import { OrderService } from '../../core/services/order.service';
 import { UserService } from '../../core/services/user.service';
 
+
 @Component({
   selector: 'app-dashboard',
 
   standalone: true,
 
-  imports: [CurrencyPipe, DatePipe],
+  imports: [CurrencyPipe],
 
   templateUrl: './dashboard.html',
 
-  styleUrl: './dashboard.css',
+  styleUrl: './dashboard.css'
 })
 export class Dashboard implements OnInit {
-  books: Book[] = [];
 
+  // Data
+  books: Book[] = [];
   orders: Order[] = [];
 
-  totalUsers = 0;
+
+  // Statistics
   totalBooks = 0;
+  totalUsers = 0;
   totalOrders = 0;
   totalSales = 0;
 
-  deliveredOrders = 0;
-  processingOrders = 0;
-  shippedOrders = 0;
-  cancelledOrders = 0;
 
+  // Sales chart
   salesByMonth: {
     month: string;
     sales: number;
   }[] = [];
 
+
+  // Best selling books
   topBooks: {
     title: string;
     quantity: number;
   }[] = [];
 
-  maxMonthlySales = 0;
+
+  // Highest sales value
+  maxSales = 0;
+
+  // Highest book sales
   maxBookSales = 0;
 
-  loading = true;
 
   constructor(
     private bookService: BookService,
     private orderService: OrderService,
-    private userService: UserService,
-    private cdr: ChangeDetectorRef,
+    private userService: UserService
   ) {}
 
+
   ngOnInit(): void {
-    this.loadDashboardData();
+
+    this.loadBooks();
+
+    this.loadUsers();
+
+    this.loadOrders();
+
   }
 
-  loadDashboardData(): void {
+
+  // Get books
+  loadBooks(): void {
+
     this.bookService.getBooks().subscribe({
+
       next: (books) => {
+
         this.books = books;
 
         this.totalBooks = books.length;
 
         this.calculateTopBooks();
+
       },
 
       error: (error) => {
-        console.error('Error loading books:', error);
-      },
+
+        console.log('Error loading books:', error);
+
+      }
+
     });
+
+  }
+
+
+  // Get users
+  loadUsers(): void {
 
     this.userService.getUsers().subscribe({
+
       next: (users) => {
+
         this.totalUsers = users.length;
+
       },
 
       error: (error) => {
-        console.error('Error loading users:', error);
-      },
+
+        console.log('Error loading users:', error);
+
+      }
+
     });
+
+  }
+
+
+  // Get orders
+  loadOrders(): void {
 
     this.orderService.getOrders().subscribe({
+
       next: (orders) => {
+
         this.orders = orders;
+
         this.totalOrders = orders.length;
 
-        this.calculateSales();
-        this.calculateOrderStatuses();
+        this.calculateTotalSales();
+
         this.calculateMonthlySales();
+
         this.calculateTopBooks();
 
-        this.loading = false;
-
-        this.cdr.detectChanges();
       },
 
       error: (error) => {
-        console.error('Error loading orders:', error);
-        this.loading = false;
 
-        this.cdr.detectChanges();
-      },
+        console.log('Error loading orders:', error);
+
+      }
+
     });
+
   }
 
-  calculateSales(): void {
-    this.totalSales = this.orders.reduce((sum, order) => sum + order.total, 0);
+
+  // Calculate total sales
+  calculateTotalSales(): void {
+
+    this.totalSales = 0;
+
+    for (const order of this.orders) {
+
+      this.totalSales += order.total;
+
+    }
+
   }
 
-  calculateOrderStatuses(): void {
-    this.deliveredOrders = this.orders.filter((order) => order.status === 'Delivered').length;
 
-    this.processingOrders = this.orders.filter((order) => order.status === 'Processing').length;
-
-    this.shippedOrders = this.orders.filter((order) => order.status === 'Shipped').length;
-
-    this.cancelledOrders = this.orders.filter((order) => order.status === 'Cancelled').length;
-  }
-
+  // Calculate sales for each month
   calculateMonthlySales(): void {
-    const monthlySales: {
-      [key: string]: number;
-    } = {};
 
-    this.orders.forEach((order) => {
+    const monthlySales: { [month: string]: number } = {};
+
+
+    for (const order of this.orders) {
+
       const date = new Date(order.date);
 
       if (isNaN(date.getTime())) {
-        return;
+        continue;
       }
 
-      const month = date.toLocaleString('en-US', { month: 'short' });
 
-      monthlySales[month] = (monthlySales[month] || 0) + order.total;
-    });
-
-    this.salesByMonth = Object.entries(monthlySales).map(([month, sales]) => ({
-      month,
-      sales,
-    }));
-
-    this.salesByMonth.sort((a, b) => {
-      const monthA = new Date(`${a.month} 1, 2026`).getMonth();
-
-      const monthB = new Date(`${b.month} 1, 2026`).getMonth();
-
-      return monthA - monthB;
-    });
-
-    this.maxMonthlySales = Math.max(...this.salesByMonth.map((item) => item.sales), 1);
-  }
-
-  calculateTopBooks(): void {
-    const bookSales: {
-      [key: number]: number;
-    } = {};
-
-    this.orders.forEach((order) => {
-      order.items.forEach((item) => {
-        bookSales[item.bookId] = (bookSales[item.bookId] || 0) + item.quantity;
+      const month = date.toLocaleString('en-US', {
+        month: 'short'
       });
-    });
 
-    this.topBooks = Object.entries(bookSales)
 
-      .map(([bookId, quantity]) => {
-        const book = this.books.find((b) => b.id === Number(bookId));
+      if (monthlySales[month]) {
 
-        return {
-          title: book ? book.title : `Book #${bookId}`,
+        monthlySales[month] += order.total;
 
-          quantity,
-        };
-      })
+      } else {
 
-      .sort((a, b) => b.quantity - a.quantity)
+        monthlySales[month] = order.total;
 
-      .slice(0, 5);
+      }
 
-    this.maxBookSales = Math.max(...this.topBooks.map((book) => book.quantity), 1);
-  }
-
-  getBarHeight(value: number): number {
-    if (this.maxMonthlySales === 0) {
-      return 0;
     }
 
-    return Math.max(5, (value / this.maxMonthlySales) * 100);
-  }
 
-  getBookBarWidth(value: number): number {
-    if (this.maxBookSales === 0) {
-      return 0;
+    this.salesByMonth = [];
+
+
+    for (const month in monthlySales) {
+
+      this.salesByMonth.push({
+
+        month: month,
+
+        sales: monthlySales[month]
+
+      });
+
     }
 
-    return (value / this.maxBookSales) * 100;
+
+    // Find the highest monthly sale
+    this.maxSales = 0;
+
+    for (const item of this.salesByMonth) {
+
+      if (item.sales > this.maxSales) {
+
+        this.maxSales = item.sales;
+
+      }
+
+    }
+
   }
 
-  getRecentOrders(): Order[] {
-    return [...this.orders]
 
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  // Find best selling books
+  calculateTopBooks(): void {
 
-      .slice(0, 5);
+    const bookSales: { [id: number]: number } = {};
+
+
+    // Count how many times each book was sold
+    for (const order of this.orders) {
+
+      for (const item of order.items) {
+
+        if (bookSales[item.bookId]) {
+
+          bookSales[item.bookId] += item.quantity;
+
+        } else {
+
+          bookSales[item.bookId] = item.quantity;
+
+        }
+
+      }
+
+    }
+
+
+    this.topBooks = [];
+
+
+    // Convert book IDs into book names
+    for (const id in bookSales) {
+
+      const book = this.books.find(
+        b => b.id === Number(id)
+      );
+
+
+      this.topBooks.push({
+
+        title: book
+          ? book.title
+          : `Book #${id}`,
+
+        quantity: bookSales[Number(id)]
+
+      });
+
+    }
+
+
+    // Sort from highest to lowest
+    this.topBooks.sort(
+      (a, b) => b.quantity - a.quantity
+    );
+
+
+    // Show only the top 5
+    this.topBooks = this.topBooks.slice(0, 5);
+
+
+    // Find highest book sales
+    this.maxBookSales = 0;
+
+    for (const book of this.topBooks) {
+
+      if (book.quantity > this.maxBookSales) {
+
+        this.maxBookSales = book.quantity;
+
+      }
+
+    }
+
   }
 
-  getLowStockBooks(): Book[] {
-    return this.books
 
-      .filter((book) => book.stock <= 5)
+  // Calculate bar height
+  getBarHeight(sales: number): number {
 
-      .sort((a, b) => a.stock - b.stock)
+    if (this.maxSales === 0) {
 
-      .slice(0, 5);
+      return 0;
+
+    }
+
+    return (sales / this.maxSales) * 100;
+
   }
+
 }
