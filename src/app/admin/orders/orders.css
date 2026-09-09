@@ -36,7 +36,6 @@
   font-weight: 600;
 }
 
-
 /* SUMMARY */
 
 .order-summary {
@@ -64,7 +63,6 @@
   color: #172554;
   font-size: 22px;
 }
-
 
 /* TABLE */
 
@@ -106,7 +104,6 @@
   background: #fafbfc;
 }
 
-
 /* ORDER */
 
 .order-id {
@@ -122,14 +119,12 @@
   margin-top: 4px;
 }
 
-
 /* DATE */
 
 .order-date {
   color: #64748b;
   font-size: 13px;
 }
-
 
 /* ITEMS */
 
@@ -138,14 +133,12 @@
   font-size: 13px;
 }
 
-
 /* TOTAL */
 
 .order-total {
   color: #172554;
   font-size: 14px;
 }
-
 
 /* STATUS */
 
@@ -177,7 +170,6 @@
   color: #64748b;
 }
 
-
 /* EMPTY */
 
 .empty-state {
@@ -201,20 +193,15 @@
   font-size: 14px;
 }
 
-
 /* RESPONSIVE */
 
 @media (max-width: 1000px) {
-
   .order-summary {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
-
 @media (max-width: 600px) {
-
   .page-header {
     flex-direction: column;
     align-items: flex-start;
@@ -224,5 +211,4 @@
   .order-summary {
     grid-template-columns: 1fr;
   }
-
 }

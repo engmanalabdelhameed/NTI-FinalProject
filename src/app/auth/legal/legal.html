@@ -1,0 +1,38 @@
+<section class="legal-page">
+  <div class="legal-card">
+    <a class="legal-brand" routerLink="/auth/login">BookNest</a>
+    @if (page === 'terms') {
+      <span class="legal-kicker">BOOKNEST / TERMS</span>
+      <h1>Terms of Service</h1>
+      <p>
+        By using BookNest, you agree to use the library responsibly and keep your account details
+        accurate.
+      </p>
+      <h2>Your account</h2>
+      <p>
+        You are responsible for protecting your sign-in details and for activity performed through
+        your account.
+      </p>
+      <h2>Using the service</h2>
+      <p>
+        BookNest is provided for personal book discovery, collection management, and ordering. Do
+        not misuse the service or attempt to access another account.
+      </p>
+    } @else {
+      <span class="legal-kicker">BOOKNEST / PRIVACY</span>
+      <h1>Privacy Policy</h1>
+      <p>BookNest stores the information needed to provide your account and reading experience.</p>
+      <h2>Information we use</h2>
+      <p>
+        We use your name, username, email, and account activity to authenticate you and support your
+        library experience.
+      </p>
+      <h2>Your choices</h2>
+      <p>
+        You can sign out at any time and request changes to your account information through the
+        application.
+      </p>
+    }
+    <a class="back-link" routerLink="/auth/register">Back to account creation</a>
+  </div>
+</section>

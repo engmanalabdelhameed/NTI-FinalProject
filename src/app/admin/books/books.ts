@@ -8,15 +8,14 @@ import { BookService } from '../../core/services/book.service';
   standalone: true,
   imports: [CurrencyPipe],
   templateUrl: './books.html',
-  styleUrl: './books.css'
+  styleUrl: './books.css',
 })
 export class Books implements OnInit {
-
   books: Book[] = [];
 
   constructor(
     private bookService: BookService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +28,7 @@ export class Books implements OnInit {
       },
       error: (error) => {
         console.error('Error loading books:', error);
-      }
+      },
     });
   }
 }

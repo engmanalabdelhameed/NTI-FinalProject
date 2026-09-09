@@ -1,12 +1,12 @@
 <nav class="navbar">
 
   <div class="navbar-brand">
-    <a routerLink="/">Lunar Library</a>
+    <a routerLink="/">Library</a>
   </div>
 
   <div class="navbar-links">
 
-    <a routerLink="/" routerLinkActive="active"
+    <a routerLink="/home" routerLinkActive="active"
        [routerLinkActiveOptions]="{ exact: true }">
       Home
     </a>
@@ -35,13 +35,19 @@
       Cart
     </a>
 
-    <a routerLink="/profile" class="profile-link">
-      Profile
-    </a>
+    @if (authService.isAuthenticated()) {
+      <a routerLink="/profile" class="profile-link">
+        {{ authService.user()?.firstName }}
+      </a>
 
-    <a routerLink="/auth/login" class="login-btn">
-      Login
-    </a>
+      <button type="button" class="login-btn" (click)="authService.logout()">
+        Logout
+      </button>
+    } @else {
+      <a routerLink="/auth/login" class="login-btn">
+        Login
+      </a>
+    }
 
   </div>
 
