@@ -1,0 +1,8 @@
+<button
+  [class.btn-primary]="type === 'primary'"
+  [class.btn-secondary]="type === 'secondary'"
+  [disabled]="disabled"
+  (click)="onClick()"
+>
+  {{ text }}
+</button>

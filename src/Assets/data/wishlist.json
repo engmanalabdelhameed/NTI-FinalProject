@@ -1,0 +1,18 @@
+[
+  {
+    "userId": 2,
+    "bookIds": [4, 7, 8]
+  },
+  {
+    "userId": 3,
+    "bookIds": [1, 3, 6]
+  },
+  {
+    "userId": 4,
+    "bookIds": [2, 5]
+  },
+  {
+    "userId": 5,
+    "bookIds": [4, 5, 7]
+  }
+]

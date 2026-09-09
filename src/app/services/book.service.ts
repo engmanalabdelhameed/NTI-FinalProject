@@ -8,6 +8,6 @@ export class BookService {
   constructor(private http: HttpClient) {}
 
   getBooks() {
-    return this.http.get<any[]>('assets/data/books.json');
-  }
+  return this.http.get<any[]>('Assets/data/books.json');
+}
 }

@@ -3,7 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": false
+    "analytics": "71bf6749-afab-4365-bf2f-7bb2096b09a9"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -20,16 +20,16 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-                {
-                  "glob": "**/*",
-                  "input": "public"
-                },
-                {
-                  "glob": "**/*",
-                  "input": "src/assets",
-                  "output": "assets"
-                }
-              ],
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/Assets",
+                "output": "Assets"
+              }
+            ],
             "styles": ["src/styles.css"]
           },
           "configurations": {

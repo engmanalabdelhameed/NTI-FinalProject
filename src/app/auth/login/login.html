@@ -1,0 +1,123 @@
+<main class="auth-page">
+  <!-- Authentication background -->
+  <div class="bg-decoration bg-decoration-1"></div>
+  <div class="bg-decoration bg-decoration-2"></div>
+  <div class="bg-grid"></div>
+
+  <section class="auth-container">
+    <!-- Brand and library message -->
+    <aside class="auth-showcase">
+      <a routerLink="/home" class="brand">
+        <span class="brand-icon">📖</span>
+        <span>BookNest</span>
+      </a>
+      <div class="showcase-content">
+        <span class="eyebrow">YOUR PERSONAL LIBRARY</span>
+        <h2>Every story has <span>a place.</span></h2>
+        <p>
+          Organize your books, discover new stories, and build your own reading world with BookNest.
+        </p>
+      </div>
+      <div class="showcase-footer">
+        <span>© 2026 BookNest</span>
+        <span>Made for readers.</span>
+      </div>
+    </aside>
+
+    <section class="auth-card">
+      <!-- Mobile brand -->
+      <a routerLink="/home" class="mobile-brand">
+        <span class="brand-icon">📖</span>
+        <span>BookNest</span>
+      </a>
+      <header class="auth-header">
+        <!-- Login heading -->
+        <div class="header-icon">✦</div>
+        <div>
+          <h1>Welcome back</h1>
+          <p>Sign in to continue your reading journey.</p>
+        </div>
+      </header>
+
+      <div class="auth-tabs">
+        <!-- Auth mode navigation -->
+        <button type="button" class="auth-tab active" (click)="switchMode('login')">Login</button>
+        <button type="button" class="auth-tab" (click)="switchMode('register')">
+          Create Account
+        </button>
+      </div>
+
+      <form class="auth-form" (ngSubmit)="handleLogin()" #loginForm="ngForm" novalidate>
+        <!-- Username field -->
+        <!-- Password field -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <span class="input-icon">@</span>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              placeholder="Username or Gmail address"
+              autocomplete="username"
+              [(ngModel)]="form.username"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="password">Password</label>
+            <a href="#" class="forgot-link" (click)="handleForgotPassword($event)"
+              >Forgot password?</a
+            >
+          </div>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input
+              id="password"
+              name="password"
+              [type]="showPassword() ? 'text' : 'password'"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              [(ngModel)]="form.password"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+            >
+              {{ showPassword() ? '👁' : '👁' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember session option -->
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" name="remember" />
+            <span class="custom-checkbox"></span>
+            <span>Remember me</span>
+          </label>
+        </div>
+
+        <!-- Form feedback -->
+        <div
+          class="auth-message"
+          [class.error]="messageType() === 'error'"
+          [class.success]="messageType() === 'success'"
+        >
+          {{ message() }}
+        </div>
+
+        <!-- Submit action -->
+        <button type="submit" class="submit-button" [disabled]="loading()">
+          <span>{{ loading() ? 'Signing in...' : 'Sign In' }}</span>
+        </button>
+      </form>
+    </section>
+  </section>
+</main>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { WishlistService } from '../services/wishlist.service';
 import { RouterLink } from '@angular/router';
 
@@ -9,30 +9,68 @@ import { RouterLink } from '@angular/router';
   styleUrl: './wishlist.css',
 })
 export class Wishlist {
+
   books: any[] = [];
 
-  constructor(private wishlistService: WishlistService) {}
+  userId = 2;
 
- ngOnInit() {
-  console.log('Wishlist component loaded');
+  constructor(
+    private wishlistService: WishlistService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  this.wishlistService.getWishlistBooks(2).subscribe(data => {
-    console.log('Wishlist data:', data);
+  ngOnInit() {
 
-    this.books = data;
+    console.log('Wishlist component loaded');
 
-    console.log('Length:', this.books.length);
+    this.loadWishlist();
 
-    console.log('Books after update:', this.books);
-  });
-}
+  }
 
-removeBook(bookId: number) {
-  this.books = this.books.filter(book => book.id !== bookId);
-}
+  loadWishlist() {
 
-clearWishlist() {
-  this.books = [];
-}
+    this.wishlistService.getWishlistBooks(this.userId).subscribe(data => {
+
+      console.log('Wishlist data:', data);
+
+      this.books = data;
+
+      console.log('Length:', this.books.length);
+
+      this.cdr.detectChanges();
+
+    });
+
+  }
+
+  removeBook(bookId: number) {
+
+    this.wishlistService
+      .removeFromWishlist(this.userId, bookId)
+      .subscribe(() => {
+
+        this.books = this.books.filter(
+          book => book.id !== bookId
+        );
+
+        this.cdr.detectChanges();
+
+      });
+
+  }
+
+  clearWishlist() {
+
+    this.wishlistService
+      .clearWishlist(this.userId)
+      .subscribe(() => {
+
+        this.books = [];
+
+        this.cdr.detectChanges();
+
+      });
+
+  }
 
 }

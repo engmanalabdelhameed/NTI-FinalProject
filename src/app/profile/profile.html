@@ -1,0 +1,250 @@
+<section class="profile-page">
+  @if (currentUser(); as user) {
+    <!-- Profile dashboard header -->
+    <div class="profile-dashboard">
+      <header class="dashboard-header">
+        <div>
+          <span class="dashboard-kicker"
+            >BOOKNEST / {{ isAdmin ? 'ADMIN PROFILE' : 'MY PROFILE' }}</span
+          >
+          <h1>{{ isAdmin ? 'Account & administration' : 'My profile' }}</h1>
+          <p>
+            {{
+              isAdmin
+                ? 'A clear overview of your account and library operations.'
+                : 'Manage your reader
+                    identity and keep your library details close.'
+            }}
+          </p>
+        </div>
+        <a class="library-link" [routerLink]="isAdmin ? '/admin/dashboard' : '/home'">
+          {{ isAdmin ? 'Open admin dashboard' : 'Back to library' }}
+        </a>
+      </header>
+
+      <div class="dashboard-grid">
+        <!-- User identity card -->
+        <aside class="profile-card identity-card">
+          <div class="avatar-wrapper">
+            @if (user.profileImage) {
+              <img [src]="user.profileImage" [alt]="fullName" class="profile-avatar" />
+            } @else {
+              <span class="avatar-initials">{{ initials }}</span>
+            }
+            <span class="status-badge" title="Active now"></span>
+          </div>
+          <span class="user-role">{{ isAdmin ? 'System Administrator' : 'Library Member' }}</span>
+          <h2>{{ fullName }}</h2>
+          <p class="user-handle">@{{ user.username }}</p>
+
+          <div class="identity-divider"></div>
+          <div class="identity-meta">
+            <span class="status-dot"></span>
+            <span>Account active</span>
+          </div>
+          <p class="member-note">
+            Your BookNest account is ready for reading, orders, and library discovery.
+          </p>
+          <button class="logout-link" type="button" (click)="authService.logout()">Sign out</button>
+        </aside>
+
+        <main class="main-content">
+          <!-- Account statistics -->
+          <section class="stats-grid" aria-label="Account statistics">
+            <article class="stat-card">
+              <span class="stat-icon">▣</span>
+              <div>
+                <strong>{{ stats().first }}</strong
+                ><span>{{ statLabels[0] }}</span>
+              </div>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon">◷</span>
+              <div>
+                <strong>{{ stats().second }}</strong
+                ><span>{{ statLabels[1] }}</span>
+              </div>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon">♡</span>
+              <div>
+                <strong>{{ stats().third }}</strong
+                ><span>{{ statLabels[2] }}</span>
+              </div>
+            </article>
+          </section>
+
+          <!-- Editable account details -->
+          <section class="section-card details-card">
+            <div class="section-header">
+              <div>
+                <span class="section-kicker">ACCOUNT DETAILS</span>
+                <h2>Personal information</h2>
+              </div>
+              @if (editing()) {
+                <div class="form-actions">
+                  <button type="button" class="cancel-button" (click)="cancelEditing()">
+                    Cancel
+                  </button>
+                  <button type="button" class="save-button" (click)="saveProfile()">
+                    Save changes
+                  </button>
+                </div>
+              } @else {
+                <button type="button" class="edit-button" (click)="startEditing()">
+                  Edit profile
+                </button>
+              }
+            </div>
+
+            @if (saveMessage()) {
+              <p class="save-message">{{ saveMessage() }}</p>
+            }
+
+            <div class="profile-form-grid">
+              <div class="field-card">
+                <label for="user-id">User ID</label>
+                <input id="user-id" [value]="user.id" readonly />
+              </div>
+              <div class="field-card">
+                <label for="role">Account role</label>
+                <input id="role" [value]="isAdmin ? 'Administrator' : 'User'" readonly />
+              </div>
+              <div class="field-card">
+                <label for="full-name">Full name</label>
+                <input
+                  id="full-name"
+                  name="firstName"
+                  [(ngModel)]="draft.firstName"
+                  [readonly]="!editing()"
+                />
+              </div>
+              <div class="field-card">
+                <label for="last-name">Last name</label>
+                <input
+                  id="last-name"
+                  name="lastName"
+                  [(ngModel)]="draft.lastName"
+                  [readonly]="!editing()"
+                />
+              </div>
+              <div class="field-card">
+                <label for="username">Username</label>
+                <input
+                  id="username"
+                  name="username"
+                  [(ngModel)]="draft.username"
+                  [readonly]="!editing()"
+                />
+              </div>
+              <div class="field-card field-wide">
+                <label for="email">Email address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  [(ngModel)]="draft.email"
+                  [readonly]="!editing()"
+                />
+              </div>
+              <div class="field-card">
+                <label for="phone">Phone number</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  [(ngModel)]="draft.phone"
+                  [readonly]="!editing()"
+                  placeholder="Not added yet"
+                />
+              </div>
+              <div class="field-card">
+                <label for="member-since">Member since</label>
+                <input id="member-since" [value]="user.createdAt || 'Recently joined'" readonly />
+              </div>
+            </div>
+          </section>
+
+          <!-- Shipping address -->
+          @if (user.address) {
+            <section class="section-card address-card">
+              <div class="section-header">
+                <div>
+                  <span class="section-kicker">DELIVERY DETAILS</span>
+                  <h2>Shipping address</h2>
+                </div>
+                <span class="address-mark">⌂</span>
+              </div>
+              <div class="address-grid">
+                <div>
+                  <label for="street">Street</label
+                  ><input
+                    id="street"
+                    name="street"
+                    [(ngModel)]="draft.street"
+                    [readonly]="!editing()"
+                  />
+                </div>
+                <div>
+                  <label for="city">City</label
+                  ><input id="city" name="city" [(ngModel)]="draft.city" [readonly]="!editing()" />
+                </div>
+                <div>
+                  <label for="state">State</label
+                  ><input
+                    id="state"
+                    name="state"
+                    [(ngModel)]="draft.state"
+                    [readonly]="!editing()"
+                  />
+                </div>
+                <div>
+                  <label for="country">Country</label
+                  ><input
+                    id="country"
+                    name="country"
+                    [(ngModel)]="draft.country"
+                    [readonly]="!editing()"
+                  />
+                </div>
+              </div>
+            </section>
+          } @else {
+            <section class="section-card empty-address">
+              <span class="section-kicker">DELIVERY DETAILS</span>
+              <h2>No shipping address yet</h2>
+              <p>Add an address when you are ready to place your first order.</p>
+            </section>
+          }
+
+          <!-- Library activity -->
+          <section class="section-card library-card">
+            <div class="section-header">
+              <div>
+                <span class="section-kicker">{{ isAdmin ? 'CATALOGUE' : 'YOUR LIBRARY' }}</span>
+                <h2>{{ isAdmin ? 'Featured catalogue' : 'Your current books' }}</h2>
+              </div>
+              <a [routerLink]="isAdmin ? '/admin/books' : '/books'" class="view-all">View all</a>
+            </div>
+            @if (featuredBooks().length) {
+              <div class="books-grid">
+                @for (book of featuredBooks(); track book.id) {
+                  <a class="book-item" [routerLink]="['/books', book.id, 'details']">
+                    <img [src]="book.image" [alt]="book.title" class="book-cover" />
+                    <strong>{{ book.title }}</strong>
+                    <span>{{ book.author }}</span>
+                  </a>
+                }
+              </div>
+            } @else {
+              <div class="empty-shelf">
+                <span>▧</span>
+                <p>Your shelf is ready for its first story.</p>
+                <a routerLink="/books">Explore books</a>
+              </div>
+            }
+          </section>
+        </main>
+      </div>
+    </div>
+  }
+</section>

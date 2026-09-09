@@ -112,13 +112,23 @@
 
     <label>Your Rating</label>
 
-    <div class="rating-input">
-      <button>☆</button>
-      <button>☆</button>
-      <button>☆</button>
-      <button>☆</button>
-      <button>☆</button>
-    </div>
+   
+<div class="rating-input">
+
+    @for (star of [1, 2, 3, 4, 5]; track star) {
+
+      <button
+        [class.selected]="selectedRating >= star"
+        (click)="selectRating(star)"
+      >
+        {{ selectedRating >= star ? '★' : '☆' }}
+      </button>
+
+    }
+
+</div>
+
+
 
 
     <label for="review">
@@ -128,18 +138,21 @@
     <textarea
       id="review"
       placeholder="Share your thoughts about this book..."
-    ></textarea>
+      [(ngModel)]="reviewText"
+></textarea>
 
 
-    <button class="submit-review">
-      Submit Review
-    </button>
+    <button
+  class="submit-review"
+  (click)="submitReview()"
+>
+  Submit Review
+</button>
 
   </div>
 
 
   <!-- Reviews List -->
-  <div class="reviews-list">
 
     <div class="reviews-list-header">
 
@@ -155,8 +168,7 @@
 
 
     <!-- Dynamic Reviews -->
-     <h2 style="color: white;">.</h2>
-
+  
     @for (review of reviews; track review.id) {
 
       <article class="review-card">
@@ -197,6 +209,6 @@
 
     }
 
-  </div>
+  
 
 </section>

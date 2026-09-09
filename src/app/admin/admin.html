@@ -1,0 +1,30 @@
+<div class="admin-page">
+  <div class="admin-header">
+    <div>
+      <span class="admin-label"> LIBRARY </span>
+
+      <h1>Admin Panel</h1>
+
+      <p>Manage your bookstore from one place.</p>
+    </div>
+
+    <button type="button" class="admin-logout" (click)="authService.logout()">
+      <span aria-hidden="true">↪</span>
+      Sign out
+    </button>
+  </div>
+
+  <nav class="admin-nav">
+    <a routerLink="dashboard" routerLinkActive="active"> Dashboard </a>
+
+    <a routerLink="books" routerLinkActive="active"> Books </a>
+
+    <a routerLink="users" routerLinkActive="active"> Users </a>
+
+    <a routerLink="orders" routerLinkActive="active"> Orders </a>
+  </nav>
+
+  <div class="admin-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

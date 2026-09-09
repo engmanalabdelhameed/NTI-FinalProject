@@ -1,0 +1,237 @@
+.books-page {
+  width: 100%;
+}
+
+/* Page Header */
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.page-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #c27a4a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.page-header h2 {
+  margin: 0;
+  color: #172554;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.page-header p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* Book Count */
+
+.book-count {
+  padding: 8px 13px;
+  border: 1px solid #e3e7f0;
+  border-radius: 6px;
+  background: #f6f7fb;
+  color: #172554;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Table Container */
+
+.books-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e3e7f0;
+  border-radius: 9px;
+  background: white;
+}
+
+/* Table */
+
+.books-table {
+  width: 100%;
+  min-width: 750px;
+  border-collapse: collapse;
+}
+
+/* Table Header */
+
+.books-table thead {
+  background: #f7f8fc;
+}
+
+.books-table th {
+  padding: 15px 18px;
+  border-bottom: 1px solid #e3e7f0;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table Rows */
+
+.books-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #eef0f4;
+  color: #1f2937;
+  font-size: 13px;
+}
+
+.books-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.books-table tbody tr {
+  transition: 0.2s;
+}
+
+.books-table tbody tr:hover {
+  background: #fafbfc;
+}
+
+/* Book Information */
+
+.book-info {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 260px;
+}
+
+/* Book Cover */
+
+.book-cover {
+  width: 48px;
+  height: 68px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #eef0f4;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Book Details */
+
+.book-details h3 {
+  margin: 0 0 4px;
+  color: #172554;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.book-details p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* Category */
+
+.category {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 5px;
+  background: #f6f7fb;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Price */
+
+.price {
+  color: #172554;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Stock */
+
+.stock {
+  color: #172554;
+  font-weight: 700;
+}
+
+.stock.low-stock {
+  color: #c27a4a;
+}
+
+.stock.out-of-stock {
+  color: #e11d48;
+}
+
+/* Rating */
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.stars {
+  color: #c27a4a;
+  font-size: 15px;
+}
+
+/* Empty State */
+
+.empty-state {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  margin-bottom: 12px;
+  font-size: 40px;
+}
+
+.empty-state h3 {
+  margin: 0 0 7px;
+  color: #172554;
+  font-size: 18px;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* Responsive */
+
+@media (max-width: 750px) {
+  .page-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .page-header h2 {
+    font-size: 24px;
+  }
+
+  .books-table-container {
+    border-radius: 7px;
+  }
+}

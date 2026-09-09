@@ -10,7 +10,7 @@ export class ReviewsService {
   constructor(private http: HttpClient) {}
 
   getReviews() {
-    return this.http.get<any[]>('assets/data/reviews.json');
+    return this.http.get<any[]>('http://localhost:3000/api/reviews');
   }
 
   getBookReviews(bookId: number) {
@@ -21,4 +21,10 @@ export class ReviewsService {
     );
   }
 
+  addReview(review: any) {
+    return this.http.post<any>(
+      'http://localhost:3000/api/reviews',
+      review
+    );
+  }
 }

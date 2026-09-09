@@ -1,0 +1,186 @@
+<main class="auth-page">
+  <!-- Authentication background -->
+  <div class="bg-decoration bg-decoration-1"></div>
+  <div class="bg-decoration bg-decoration-2"></div>
+  <div class="bg-grid"></div>
+
+  <section class="auth-container">
+    <!-- Brand and library message -->
+    <aside class="auth-showcase">
+      <a routerLink="/home" class="brand">
+        <span class="brand-icon">📖</span>
+        <span>BookNest</span>
+      </a>
+      <div class="showcase-content">
+        <span class="eyebrow">YOUR PERSONAL LIBRARY</span>
+        <h2>Every story has <span>a place.</span></h2>
+        <p>
+          Organize your books, discover new stories, and build your own reading world with BookNest.
+        </p>
+      </div>
+      <div class="showcase-footer">
+        <span>© 2026 BookNest</span>
+        <span>Made for readers.</span>
+      </div>
+    </aside>
+
+    <section class="auth-card">
+      <!-- Mobile brand -->
+      <a routerLink="/home" class="mobile-brand">
+        <span class="brand-icon">📖</span>
+        <span>BookNest</span>
+      </a>
+      <header class="auth-header">
+        <!-- Registration heading -->
+        <div class="header-icon">✦</div>
+        <div>
+          <h1>Create your account</h1>
+          <p>Start building your personal reading world.</p>
+        </div>
+      </header>
+
+      <div class="auth-tabs">
+        <!-- Auth mode navigation -->
+        <button type="button" class="auth-tab" (click)="switchMode('login')">Login</button>
+        <button type="button" class="auth-tab active" (click)="switchMode('register')">
+          Create Account
+        </button>
+      </div>
+
+      <form class="auth-form" (ngSubmit)="handleRegister()" #registerForm="ngForm" novalidate>
+        <!-- Account identity fields -->
+        <!-- Username field -->
+        <div class="form-group">
+          <label for="full-name">Full Name</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input
+              id="full-name"
+              name="fullName"
+              type="text"
+              placeholder="Mohamed Ramy"
+              autocomplete="name"
+              minlength="3"
+              [(ngModel)]="form.fullName"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <span class="input-icon">@</span>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              placeholder="moh_amed"
+              autocomplete="username"
+              minlength="3"
+              [(ngModel)]="form.username"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Password field and strength feedback -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <div class="input-wrapper">
+            <span class="input-icon">@</span>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="reader@gmail.com"
+              autocomplete="email"
+              [(ngModel)]="form.email"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Password confirmation field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔒</span>
+            <input
+              id="password"
+              name="password"
+              [type]="showPassword() ? 'text' : 'password'"
+              placeholder="Enter your password"
+              autocomplete="new-password"
+              [(ngModel)]="form.password"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+            >
+              {{ showPassword() ? '🙈' : '👁' }}
+            </button>
+          </div>
+          <small class="password-hint">
+            Strength: {{ checkPasswordStrength(form.password) }} · 5+ characters, one letter and one
+            number
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔐</span>
+            <input
+              id="confirm-password"
+              name="confirmPassword"
+              [type]="showConfirmPassword() ? 'text' : 'password'"
+              placeholder="Repeat your password"
+              autocomplete="new-password"
+              [(ngModel)]="form.confirmPassword"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword('confirmPassword')"
+              [attr.aria-label]="showConfirmPassword() ? 'Hide password' : 'Show password'"
+            >
+              {{ showConfirmPassword() ? 'Hide' : '👁' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Terms consent -->
+        <div class="terms">
+          <label class="checkbox-label">
+            <input id="terms" type="checkbox" name="terms" [(ngModel)]="form.terms" required />
+            <span class="custom-checkbox"></span>
+            <span
+              >I agree to the <a routerLink="/auth/legal/terms">Terms</a> and
+              <a routerLink="/auth/legal/privacy">Privacy Policy</a></span
+            >
+          </label>
+        </div>
+
+        <!-- Form feedback -->
+        <div
+          class="auth-message"
+          [class.error]="messageType() === 'error'"
+          [class.success]="messageType() === 'success'"
+        >
+          {{ message() }}
+        </div>
+
+        <!-- Submit action -->
+        <button type="submit" class="submit-button" [disabled]="loading() || !form.terms">
+          <span>{{ loading() ? 'Creating account...' : 'Create Account' }}</span>
+        </button>
+      </form>
+    </section>
+  </section>
+</main>

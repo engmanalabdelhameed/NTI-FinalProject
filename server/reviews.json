@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "bookId": 1,
+    "userId": 2,
+    "rating": 5,
+    "comment": "Amazing book! I loved the adventure.",
+    "date": "2026-08-28"
+  },
+  {
+    "id": 2,
+    "bookId": 1,
+    "userId": 3,
+    "rating": 4,
+    "comment": "A very enjoyable fantasy classic.",
+    "date": "2026-09-01"
+  },
+  {
+    "id": 3,
+    "bookId": 2,
+    "userId": 2,
+    "rating": 5,
+    "comment": "Thought-provoking and still relevant.",
+    "date": "2026-08-20"
+  },
+  {
+    "id": 4,
+    "bookId": 3,
+    "userId": 4,
+    "rating": 4,
+    "comment": "Beautiful characters and writing.",
+    "date": "2026-08-25"
+  },
+  {
+    "id": 5,
+    "bookId": 1,
+    "userId": 2,
+    "rating": 0,
+    "comment": "hana",
+    "date": "2026-09-09"
+  },
+  {
+    "id": 6,
+    "bookId": 1,
+    "userId": 2,
+    "rating": 0,
+    "comment": "",
+    "date": "2026-09-09"
+  },
+  {
+    "id": 7,
+    "bookId": 2,
+    "userId": 2,
+    "rating": 4,
+    "comment": "wow!",
+    "date": "2026-09-09"
+  }
+]
