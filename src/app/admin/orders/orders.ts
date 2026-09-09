@@ -9,37 +9,27 @@ import { OrderService } from '../../core/services/order.service';
 
   standalone: true,
 
-  imports: [
-    CurrencyPipe,
-    DatePipe
-  ],
+  imports: [CurrencyPipe, DatePipe],
 
   templateUrl: './orders.html',
 
-  styleUrl: './orders.css'
+  styleUrl: './orders.css',
 })
 export class Orders implements OnInit {
-
   orders: Order[] = [];
 
   loading = true;
 
-
   constructor(
     private orderService: OrderService,
-    private cdr: ChangeDetectorRef
-  ) { }
-
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
-
     this.orderService.getOrders().subscribe({
-
       next: (orders) => {
         this.orders = [...orders].sort(
-          (a, b) =>
-            new Date(b.date).getTime() -
-            new Date(a.date).getTime()
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
         );
 
         this.loading = false;
@@ -52,40 +42,19 @@ export class Orders implements OnInit {
         this.loading = false;
 
         this.cdr.detectChanges();
-      }
+      },
     });
-
   }
-
 
   getTotalSales(): number {
-
-    return this.orders.reduce(
-      (sum, order) => sum + order.total,
-      0
-    );
-
+    return this.orders.reduce((sum, order) => sum + order.total, 0);
   }
 
-
-  getStatusCount(
-    status: Order['status']
-  ): number {
-
-    return this.orders.filter(
-      order => order.status === status
-    ).length;
-
+  getStatusCount(status: Order['status']): number {
+    return this.orders.filter((order) => order.status === status).length;
   }
-
 
   getItemsCount(order: Order): number {
-
-    return order.items.reduce(
-      (sum, item) => sum + item.quantity,
-      0
-    );
-
+    return order.items.reduce((sum, item) => sum + item.quantity, 0);
   }
-
 }

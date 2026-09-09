@@ -2,11 +2,11 @@
   {
     "id": 1,
     "username": "admin",
-    "password": "admin123",
+    "password": "admin",
     "role": "admin",
-    "firstName": "Nile",
-    "lastName": "Reader",
-    "email": "admin@nilereader.com",
+    "firstName": "Manger",
+    "lastName": "Library",
+    "email": "admin@gmail.com",
     "phone": "01000000000",
     "profileImage": "Assets/images/users_images/admin_image.jpg",
     "createdAt": "2026-01-01"
@@ -18,7 +18,7 @@
     "role": "user",
     "firstName": "Ahmed",
     "lastName": "Ali",
-    "email": "ahmed@example.com",
+    "email": "ahmed@gmail.com",
     "phone": "01012345678",
     "profileImage": "Assets/images/users_images/ahmed_image.jpg",
     "address": {
@@ -36,7 +36,7 @@
     "role": "user",
     "firstName": "Sara",
     "lastName": "Mohamed",
-    "email": "sara@example.com",
+    "email": "sara@gmail.com",
     "phone": "01112345678",
     "profileImage": "Assets/images/users_images/sara_image.webp",
     "address": {
@@ -54,7 +54,7 @@
     "role": "user",
     "firstName": "Omar",
     "lastName": "Hassan",
-    "email": "omar@example.com",
+    "email": "omar@gmail.com",
     "phone": "01212345678",
     "profileImage": "Assets/images/users_images/omar_image.jpg",
     "address": {
@@ -72,7 +72,7 @@
     "role": "user",
     "firstName": "Mariam",
     "lastName": "Samir",
-    "email": "mariam@example.com",
+    "email": "mariam@gmail.com",
     "phone": "01512345678",
     "profileImage": "Assets/images/users_images/mariem_image.jpg",
     "address": {
