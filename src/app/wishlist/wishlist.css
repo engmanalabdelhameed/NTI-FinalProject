@@ -1,0 +1,375 @@
+/* =========================
+   WISHLIST PAGE
+========================= */
+
+.wishlist-page {
+  background: #f8f5ec;
+  min-height: 100vh;
+  padding: 55px 7%;
+  color: #17313b;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.wishlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  max-width: 1200px;
+  margin: 0 auto 45px;
+
+  border-bottom: 1px solid #ddd4c3;
+  padding-bottom: 30px;
+}
+
+.eyebrow {
+  color: #a67832;
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.wishlist-header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 36px;
+  color: #102f3b;
+
+  margin: 0 0 10px;
+}
+
+.wishlist-header p {
+  color: #6e716d;
+  font-size: 14px;
+}
+
+
+/* =========================
+   WISHLIST COUNT
+========================= */
+
+.wishlist-count {
+  width: 115px;
+  height: 115px;
+
+  border: 1px solid #c7bda9;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #fffdf8;
+}
+
+.wishlist-count span {
+  font-family: Georgia, serif;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  color: #a67832;
+}
+
+.wishlist-count small {
+  color: #6f726d;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+.wishlist-section {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 23px;
+  color: #123542;
+
+  margin: 0 0 5px;
+}
+
+.section-heading p {
+  font-size: 13px;
+  color: #77756e;
+}
+
+.clear-btn {
+  background: transparent;
+
+  border: 1px solid #b7aa94;
+
+  color: #6e5a3c;
+
+  padding: 9px 18px;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background: #eee7d8;
+}
+
+
+/* =========================
+   BOOK GRID
+========================= */
+
+.wishlist-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+
+/* =========================
+   BOOK CARD
+========================= */
+
+.wishlist-card {
+  background: #fffdf8;
+
+  border: 1px solid #ddd5c5;
+
+  transition: 0.25s ease;
+}
+
+.wishlist-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 8px 20px rgba(40, 45, 38, 0.08);
+}
+
+
+/* =========================
+   BOOK COVER
+========================= */
+
+.book-cover {
+  height: 270px;
+
+  background: #eee9dc;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* =========================
+   REMOVE BUTTON
+========================= */
+
+.remove-btn {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  border: 1px solid #c8bca7;
+
+  background: #fffdf8;
+
+  color: #9b7336;
+
+  cursor: pointer;
+
+  font-size: 17px;
+
+  transition: 0.2s;
+}
+
+.remove-btn:hover {
+  background: #9b7336;
+  color: white;
+}
+
+
+/* =========================
+   BOOK INFO
+========================= */
+
+.book-info {
+  padding: 18px;
+}
+
+.book-category {
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.3px;
+
+  color: #9b7336;
+}
+
+.book-info h3 {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 19px;
+
+  color: #173541;
+
+  margin: 7px 0 3px;
+}
+
+.author {
+  font-size: 12px;
+
+  color: #777;
+
+  margin-bottom: 12px;
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 18px;
+}
+
+.stars {
+  color: #b27d2f;
+
+  letter-spacing: 1px;
+
+  font-size: 14px;
+}
+
+.rating-number {
+  color: #777;
+
+  font-size: 11px;
+}
+
+
+/* =========================
+   CARD BOTTOM
+========================= */
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top: 1px solid #e4ded1;
+
+  padding-top: 13px;
+}
+
+.card-bottom strong {
+  color: #173541;
+
+  font-size: 15px;
+}
+
+.view-btn {
+  border: none;
+
+  background: #ad7d36;
+
+  color: white;
+
+  padding: 8px 12px;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  background: #8d6428;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .wishlist-page {
+    padding: 35px 20px;
+  }
+
+  .wishlist-header {
+    align-items: flex-start;
+  }
+
+  .wishlist-count {
+    width: 85px;
+    height: 85px;
+  }
+
+  .wishlist-header h1 {
+    font-size: 28px;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+}

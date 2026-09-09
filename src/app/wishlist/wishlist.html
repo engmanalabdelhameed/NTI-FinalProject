@@ -1,0 +1,115 @@
+<div class="wishlist-page">
+
+  <!-- Page Header -->
+  <section class="wishlist-header">
+
+    <div>
+      <p class="eyebrow">YOUR SAVED BOOKS</p>
+
+      <h1>My Wishlist</h1>
+
+      <p>
+        A collection of books you've saved for your next reading journey.
+      </p>
+    </div>
+
+    <div class="wishlist-count">
+      <span>{{ books.length }}</span>
+      <small>Books Saved</small>
+    </div>
+
+  </section>
+
+
+  <!-- Wishlist Books -->
+  <section class="wishlist-section">
+
+    <div class="section-heading">
+
+      <div>
+        <h2>Saved Books</h2>
+        <p>Books waiting for you to discover.</p>
+      </div>
+
+      <button class="clear-btn" (click)="clearWishlist()">
+        Clear Wishlist
+      </button>
+
+    </div>
+
+
+    <!-- Dynamic Wishlist Books -->
+    <div class="wishlist-grid">
+
+      @for (book of books; track book.id) {
+
+        <article class="wishlist-card">
+
+          <div class="book-cover">
+
+            <img
+              [src]="book.image"
+              [alt]="book.title + ' book cover'"
+            />
+
+            <button
+              class="remove-btn"
+              title="Remove from wishlist"
+              (click)="removeBook(book.id)">
+              ♥
+            </button>
+
+          </div>
+
+
+          <div class="book-info">
+
+            <span class="book-category">
+              {{ book.category }}
+            </span>
+
+            <h3>
+              {{ book.title }}
+            </h3>
+
+            <p class="author">
+              {{ book.author }}
+            </p>
+
+
+            <div class="rating">
+
+              <span class="stars">
+                ★★★★★
+              </span>
+
+              <span class="rating-number">
+                {{ book.rating }}
+              </span>
+
+            </div>
+
+
+            <div class="card-bottom">
+
+              <strong>
+                {{ book.price }} EGP
+              </strong>
+
+              <button class="view-btn" [routerLink]="['/books', book.id, 'details']">
+                View Book
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+  </section>
+
+</div>

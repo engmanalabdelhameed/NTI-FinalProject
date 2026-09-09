@@ -1,0 +1,202 @@
+<section class="reviews-section">
+
+  <!-- Header -->
+  <div class="reviews-header">
+
+    <div>
+      <p class="eyebrow">READERS' OPINIONS</p>
+
+      <h2>Customer Reviews</h2>
+
+      <p>
+        Discover what other readers think about this book.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- Rating Summary -->
+  <div class="rating-summary">
+
+    <div class="overall-rating">
+
+      <div class="rating-number">
+        4.8
+      </div>
+
+      <div class="big-stars">
+        ★★★★★
+      </div>
+
+      <p>Based on 126 reviews</p>
+
+    </div>
+
+
+    <div class="rating-bars">
+
+      <div class="rating-row">
+        <span>5</span>
+        <span class="mini-star">★</span>
+
+        <div class="progress">
+          <div class="progress-fill width-92"></div>
+        </div>
+
+        <span>92</span>
+      </div>
+
+
+      <div class="rating-row">
+        <span>4</span>
+        <span class="mini-star">★</span>
+
+        <div class="progress">
+          <div class="progress-fill width-17"></div>
+        </div>
+
+        <span>21</span>
+      </div>
+
+
+      <div class="rating-row">
+        <span>3</span>
+        <span class="mini-star">★</span>
+
+        <div class="progress">
+          <div class="progress-fill width-7"></div>
+        </div>
+
+        <span>8</span>
+      </div>
+
+
+      <div class="rating-row">
+        <span>2</span>
+        <span class="mini-star">★</span>
+
+        <div class="progress">
+          <div class="progress-fill width-3"></div>
+        </div>
+
+        <span>3</span>
+      </div>
+
+
+      <div class="rating-row">
+        <span>1</span>
+        <span class="mini-star">★</span>
+
+        <div class="progress">
+          <div class="progress-fill width-2"></div>
+        </div>
+
+        <span>2</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Write Review -->
+  <div class="write-review">
+
+    <h3>Write a Review</h3>
+
+    <p>
+      Share your thoughts with fellow readers.
+    </p>
+
+
+    <label>Your Rating</label>
+
+    <div class="rating-input">
+      <button>☆</button>
+      <button>☆</button>
+      <button>☆</button>
+      <button>☆</button>
+      <button>☆</button>
+    </div>
+
+
+    <label for="review">
+      Your Review
+    </label>
+
+    <textarea
+      id="review"
+      placeholder="Share your thoughts about this book..."
+    ></textarea>
+
+
+    <button class="submit-review">
+      Submit Review
+    </button>
+
+  </div>
+
+
+  <!-- Reviews List -->
+  <div class="reviews-list">
+
+    <div class="reviews-list-header">
+
+      <h3>Recent Reviews</h3>
+
+      <select>
+        <option>Most Recent</option>
+        <option>Highest Rated</option>
+        <option>Lowest Rated</option>
+      </select>
+
+    </div>
+
+
+    <!-- Dynamic Reviews -->
+     <h2 style="color: white;">.</h2>
+
+    @for (review of reviews; track review.id) {
+
+      <article class="review-card">
+
+        <div class="review-top">
+
+          <div class="reviewer">
+
+            <div class="avatar">
+              {{ review.userId }}
+            </div>
+
+            <div>
+              <h4>User {{ review.userId }}</h4>
+
+              <span>
+                Verified Reader · {{ review.date }}
+              </span>
+            </div>
+
+          </div>
+
+          <div class="review-stars">
+            {{ '★'.repeat(review.rating) }}{{ '☆'.repeat(5 - review.rating) }}
+          </div>
+
+        </div>
+
+        <p class="review-text">
+          {{ review.comment }}
+        </p>
+
+        <button class="helpful-btn">
+          ♡ Helpful
+        </button>
+
+      </article>
+
+    }
+
+  </div>
+
+</section>
