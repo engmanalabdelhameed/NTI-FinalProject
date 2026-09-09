@@ -9,7 +9,7 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
   templateUrl: './book-details.html',
   styleUrl: './book-details.css',
 })
-export class bookdetails {
+export class BookDetails {
 books=[
      {
       id: 1,
