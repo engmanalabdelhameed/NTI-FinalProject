@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import {
   RouterOutlet,
   RouterLink,
@@ -7,13 +8,17 @@ import {
 
 @Component({
   selector: 'app-admin',
+
   standalone: true,
+
   imports: [
     RouterOutlet,
     RouterLink,
     RouterLinkActive
   ],
+
   templateUrl: './admin.html',
+
   styleUrl: './admin.css'
 })
 export class Admin {}

@@ -38,7 +38,7 @@
     "lastName": "Mohamed",
     "email": "sara@example.com",
     "phone": "01112345678",
-    "profileImage": "Assets/images/users_images/sara_image.jpg",
+    "profileImage": "Assets/images/users_images/sara_image.webp",
     "address": {
       "street": "8 Tahrir Street",
       "city": "Cairo",

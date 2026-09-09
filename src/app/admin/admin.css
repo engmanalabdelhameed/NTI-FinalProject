@@ -1,102 +1,77 @@
-:host {
-  display: block;
-}
-
-/* Admin page */
-
 .admin-page {
   min-height: 100vh;
-  background-color: #f6f7fb;
+  background: #f6f7fb;
   padding: 35px 50px;
-  box-sizing: border-box;
+  color: #1f2937;
 }
 
-/* Header */
-
 .admin-header {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .admin-label {
   display: block;
-  margin-bottom: 6px;
   color: #c27a4a;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
 }
 
 .admin-header h1 {
   margin: 0;
   color: #172554;
-  font-size: 32px;
-  font-weight: 800;
+  font-size: 34px;
 }
 
 .admin-header p {
-  margin: 7px 0 0;
+  margin-top: 8px;
   color: #64748b;
-  font-size: 14px;
 }
 
-/* Admin navigation */
 
 .admin-nav {
   display: flex;
-  align-items: center;
-  gap: 5px;
-  background-color: #ffffff;
-  padding: 7px;
+  gap: 8px;
+  background: white;
+  padding: 8px;
   border: 1px solid #e3e7f0;
-  border-radius: 9px;
-  box-shadow: 0 4px 15px rgba(23, 37, 84, 0.05);
+  border-radius: 12px;
   margin-bottom: 25px;
 }
 
-/* Navigation links */
-
 .admin-nav a {
-  color: #64748b;
+  padding: 11px 20px;
+  border-radius: 8px;
+
   text-decoration: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 14px;
+  color: #64748b;
+
   font-weight: 600;
-  transition: 0.3s;
+
+  transition: 0.2s;
 }
 
 .admin-nav a:hover {
   color: #172554;
-  background-color: #f7f8fc;
+  background: #f6f7fb;
 }
-
-/* Active link */
 
 .admin-nav a.active {
-  color: #ffffff;
-  background-color: #172554;
+  background: #172554;
+  color: white;
 }
 
-.admin-nav a.active:hover {
-  color: #ffffff;
-  background-color: #0f1b42;
-}
-
-/* Content */
 
 .admin-content {
-  background-color: #ffffff;
-  border: 1px solid #e3e7f0;
-  border-radius: 10px;
-  min-height: 400px;
-  padding: 25px;
+  width: 100%;
 }
 
-/* Responsive */
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
+
   .admin-page {
-    padding: 25px;
+    padding: 25px 18px;
   }
 
   .admin-nav {
@@ -106,18 +81,5 @@
   .admin-nav a {
     white-space: nowrap;
   }
-}
 
-@media (max-width: 500px) {
-  .admin-page {
-    padding: 20px 15px;
-  }
-
-  .admin-header h1 {
-    font-size: 26px;
-  }
-
-  .admin-content {
-    padding: 18px;
-  }
 }

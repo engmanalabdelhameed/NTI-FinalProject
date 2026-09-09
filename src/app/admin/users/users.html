@@ -1,1 +1,222 @@
-<p>users works!</p>
+<div class="users-page">
+
+  <div class="page-header">
+
+    <div>
+
+      <span class="page-label">
+        USER MANAGEMENT
+      </span>
+
+      <h2>Users</h2>
+
+      <p>
+        View the users registered in your bookstore.
+      </p>
+
+    </div>
+
+
+    <div class="user-count">
+      {{ users.length }} Users
+    </div>
+
+  </div>
+
+
+  <div class="user-summary">
+
+    <div class="summary-card">
+
+      <span>Total Users</span>
+
+      <strong>
+        {{ users.length }}
+      </strong>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <span>Regular Users</span>
+
+      <strong>
+        {{ getUserCount() }}
+      </strong>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <span>Administrators</span>
+
+      <strong>
+        {{ getAdminCount() }}
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="users-table-container">
+
+    @if (loading) {
+
+      <div class="empty-state">
+
+        <h3>Loading Users...</h3>
+
+        <p>
+          Please wait while the users are loaded.
+        </p>
+
+      </div>
+
+    }
+
+    @else if (users.length > 0) {
+
+      <table class="users-table">
+
+        <thead>
+
+          <tr>
+            <th>User</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Joined</th>
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @for (
+            user of users;
+            track user.id
+          ) {
+
+            <tr>
+
+              <td>
+
+                <div class="user-info">
+
+                  <div class="avatar">
+
+                    <img
+                      [src]="user.profileImage"
+                      [alt]="getFullName(user)"
+                    >
+
+                  </div>
+
+
+                  <div>
+
+                    <strong>
+                      {{ getFullName(user) }}
+                    </strong>
+
+                    <span>
+                      #{{ user.id }}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <td>
+
+                <span class="username">
+                  @{{ user.username }}
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span class="email">
+                  {{ user.email }}
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span
+                  class="role"
+                  [class.admin]="user.role === 'admin'"
+                >
+
+                  @if (user.role === 'admin') {
+
+                    Admin
+
+                  } @else {
+
+                    User
+
+                  }
+
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <span class="joined-date">
+
+                  {{
+                    user.createdAt
+                    | date:'mediumDate'
+                  }}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    }
+
+    @else {
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          👥
+        </div>
+
+        <h3>
+          No Users Found
+        </h3>
+
+        <p>
+          There are currently no registered users.
+        </p>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

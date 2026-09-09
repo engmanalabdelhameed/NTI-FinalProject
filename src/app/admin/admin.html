@@ -1,33 +1,55 @@
 <div class="admin-page">
 
   <div class="admin-header">
+
     <div>
-      <span class="admin-label">Lunar Library</span>
+      <span class="admin-label">
+        LUNAR LIBRARY
+      </span>
+
       <h1>Admin Panel</h1>
-      <p>Manage your bookstore from one place.</p>
+
+      <p>
+        Manage your bookstore from one place.
+      </p>
     </div>
+
   </div>
 
+
   <nav class="admin-nav">
-    <a routerLink="dashboard" routerLinkActive="active">
+
+    <a
+      routerLink="dashboard"
+      routerLinkActive="active">
       Dashboard
     </a>
 
-    <a routerLink="books" routerLinkActive="active">
+    <a
+      routerLink="books"
+      routerLinkActive="active">
       Books
     </a>
 
-    <a routerLink="users" routerLinkActive="active">
+    <a
+      routerLink="users"
+      routerLinkActive="active">
       Users
     </a>
 
-    <a routerLink="orders" routerLinkActive="active">
+    <a
+      routerLink="orders"
+      routerLinkActive="active">
       Orders
     </a>
+
   </nav>
 
+
   <div class="admin-content">
+
     <router-outlet></router-outlet>
+
   </div>
 
 </div>
