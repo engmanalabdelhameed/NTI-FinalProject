@@ -1,163 +1,334 @@
+<!-- 
+<header class="navbar">
 
-<!--
-    <header class="navbar">
+    <div class="logo">
+        <span class="logo-icon">📖</span>
+        <span>The Nile Reader</span>
+    </div>
 
-        <div class="logo">
-            <span class="logo-icon">📖</span>
-            <span>The Nile Reader</span>
-        </div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Categories</a>
-            <a href="browse-books.html">Books</a>
-            <a href="#">Authors</a>
-            <a href="#">Special Offers</a>
-        </nav>
-        <div class="nav-icons">
-            <span>⌕</span>
-            <span>♙</span>
-            <span>♧</span>
-        </div>
-    </header>-->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Categories</a>
+        <a href="browse-books.html">Books</a>
+        <a href="#">Authors</a>
+        <a href="#">Special Offers</a>
+    </nav>
+
+    <div class="nav-icons">
+        <span>⌕</span>
+        <span>♙</span>
+        <span>♧</span>
+    </div>
+
+</header>
+-->
 
 
+<!-- BOOK DETAILS -->
 
-    <!-- BOOK DETAILS -->
+<main class="details-container">
 
-    <main class="details-container">
+    <!-- BREADCRUMB -->
 
-        <div class="bookdetails1">
-            <a href="browse-books.html">Books</a>
+    <div class="bookdetails1">
 
-            <span>›</span>
+        <a routerLink="/books">
+            Books
+        </a>
 
-            <span>Sapiens</span>
+        <span>›</span>
 
-        </div>
+        <span>
+            {{ book?.title }}
+        </span>
+
+    </div>
+
+
+    <!-- MAIN BOOK DETAILS -->
+
+    @if (book) {
+
         <section class="book-details">
 
+
             <!-- BOOK IMAGE -->
+
             <div class="details-image">
 
                 <img
                     [src]="book.image"
                     [alt]="book.title"
                 >
+
             </div>
 
 
+            <!-- BOOK INFORMATION -->
+
             <div class="details-info">
-                <h1>{{book.title}}</h1>
-                <p class="details-author">By{{book.author}}</p>
+
+                <h1>
+                    {{ book.title }}
+                </h1>
+
+
+                <p class="details-author">
+                    By {{ book.author }}
+                </p>
+
+
+                <!-- RATING -->
 
                 <div class="rating">
+
                     <span class="stars">
                         ★★★★★
                     </span>
-                    <span>{{book.rating}}</span>
+
+                    <span>
+                        {{ book.rating }}
+                    </span>
+
                     <span class="reviews">
-                        {{book.reviews}}
+                        {{ book.reviews || 0 }} Reviews
                     </span>
 
                 </div>
-                <div class="details-price">{{book.price}}
+
+
+                <!-- PRICE -->
+
+                <div class="details-price">
+
+                    {{ book.price }} EGP
+
                 </div>
 
+
+                <!-- DESCRIPTION -->
+
                 <p class="description">
-                    {{book.description}}</p>
-            
+                    {{ book.description }}
+                </p>
+
+
+                <!-- PURCHASE AREA -->
+
                 <div class="purchase-area">
+
+
+                    <!-- QUANTITY -->
+
                     <div class="quantity">
-                        <button (click)="decrement()">−</button>
-                        <span >{{count}}</span>
-                        <button (click)="increment()">+</button>
+
+                        <button
+                            type="button"
+                            (click)="decrement()"
+                        >
+                            −
+                        </button>
+
+
+                        <span>
+                            {{ count }}
+                        </span>
+
+
+                        <button
+                            type="button"
+                            (click)="increment()"
+                        >
+                            +
+                        </button>
 
                     </div>
 
-                    <button class="cart-btn">Add to Cart  </button>
 
-                    <button class="wishlist">    ♡ Add to Wishlist</button>
+                    <!-- CART -->
+
+                    <button
+                        type="button"
+                        class="cart-btn"
+                    >
+                        Add to Cart
+                    </button>
+
+
+                    <!-- WISHLIST -->
+
+                    <button
+                        type="button"
+                        class="wishlist"
+                    >
+                        ♡ Add to Wishlist
+                    </button>
+
+
                 </div>
+
             </div>
+
         </section>
 
 
+        <!-- BOOK INFORMATION -->
 
         <section class="book-info">
 
+
             <div class="tabs">
 
-                <button class="tab active-tab">
+                <button
+                    type="button"
+                    class="tab active-tab"
+                >
                     Details
                 </button>
-                <button class="tab">
-                    Reviews {{book.reviews}}
+
+
+                <button
+                    type="button"
+                    class="tab"
+                >
+                    Reviews {{ book.reviews || 0 }}
                 </button>
 
-                <button class="tab">
-                    Related Books      </button>
+
+                <button
+                    type="button"
+                    class="tab"
+                >
+                    Related Books
+                </button>
 
             </div>
+
+
+            <!-- DETAILS TABLE -->
+
             <div class="details-table">
 
-                <div>
-                    <strong>Publisher:</strong>
-                    {{book.publisher}}
-                </div>
 
                 <div>
-                    <strong>Language:</strong>
-                    {{book.language}}
+
+                    <strong>
+                        Publisher:
+                    </strong>
+
+                    {{ book.publisher || 'N/A' }}
+
                 </div>
 
+
                 <div>
-                    <strong>Pages:</strong>
-                    {{book.pages}}
+
+                    <strong>
+                        Language:
+                    </strong>
+
+                    {{ book.language || 'N/A' }}
+
                 </div>
+
+
                 <div>
-                    <strong>ISBN:</strong>
-                    {{book.isbn}}
+
+                    <strong>
+                        Pages:
+                    </strong>
+
+                    {{ book.pages || 'N/A' }}
+
                 </div>
+
+
+                <div>
+
+                    <strong>
+                        ISBN:
+                    </strong>
+
+                    {{ book.isbn }}
+
+                </div>
+
+
             </div>
+
         </section>
+
+
+        <!-- RELATED BOOKS -->
 
         <section class="related-books">
-            <h2>Related Books</h2>
+
+            <h2>
+                Related Books
+            </h2>
+
 
             <div class="related-grid">
-                <div class="small-book">
-                    <img
-                        src="images/great-gatsby.jpg"
-                        alt="The Beginning and The End"
 
-                    >
-                    <h3>The Beginning and The End</h3>
-                    <p>350EG  </p>
-                </div>
-                <div class="small-book">
-                    <img
-                        src="images/dune.jpg"
-                        alt="Zikola Land"
-                    >
-                    <h3>Zikola Land</h3>
-                    <p>470EGP  </p>
-                </div>
 
-                <div class="small-book">
+                @for (
+                    relatedBook of books;
+                    track relatedBook.id
+                ) {
 
-                    <img
-                        src="images/pride.jpg"
-                        alt="Diamond Dust"
-                    >
-                    <h3>
-                        Diamond Dust
-                    </h3>
-                    <p>
-                        550EGP
-                    </p>
-                </div>
+                    @if (
+                        relatedBook.id !== book.id &&
+                        relatedBook.category === book.category
+                    ) {
+
+                        <div class="small-book">
+
+
+                            <img
+                                [src]="relatedBook.image"
+                                [alt]="relatedBook.title"
+                            >
+
+
+                            <h3>
+                                {{ relatedBook.title }}
+                            </h3>
+
+
+                            <p>
+                                {{ relatedBook.price }} EGP
+                            </p>
+
+
+                        </div>
+
+                    }
+
+                }
+
+
             </div>
-        </section>
-    </main>
 
-    
+        </section>
+
+    }
+
+    @else {
+
+        <!-- LOADING -->
+
+        <div class="loading">
+
+            <h2>
+                Loading book...
+            </h2>
+
+            <p>
+                Please wait while the book information is loaded.
+            </p>
+
+        </div>
+
+    }
+
+</main>
