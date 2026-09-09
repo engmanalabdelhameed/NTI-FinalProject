@@ -7,6 +7,7 @@ export interface OrderItem {
 export interface ShippingAddress {
   street: string;
   city: string;
+  state: string;
   country: string;
 }
 
@@ -21,9 +22,23 @@ export interface Order {
     | 'Delivered'
     | 'Cancelled';
 
+  paymentStatus:
+    | 'Pending'
+    | 'Paid'
+    | 'Failed'
+    | 'Refunded';
+
+  paymentMethod: string;
+  shippingMethod: string;
+
+  subtotal: number;
+  shippingCost: number;
+  discount: number;
   total: number;
 
-  items: OrderItem[];
+  trackingNumber: string | null;
+  estimatedDelivery: string | null;
 
+  items: OrderItem[];
   shippingAddress: ShippingAddress;
 }

@@ -25,7 +25,6 @@ interface ProfileStats {
   styleUrl: './profile.css',
 })
 export class Profile {
-  // Profile dependencies and reactive dashboard state.
   private readonly http = inject(HttpClient);
   readonly authService = inject(AuthService);
   readonly currentUser = this.authService.user;
@@ -48,27 +47,23 @@ export class Profile {
   };
 
   constructor() {
-    // Prepare the form and load activity data for the current user.
     this.resetDraft();
     this.loadProfileActivity();
   }
 
   startEditing(): void {
-    // Copy the saved profile into the editable draft.
     this.resetDraft();
     this.saveMessage.set('');
     this.editing.set(true);
   }
 
   cancelEditing(): void {
-    // Discard unsaved changes and restore the saved profile.
     this.resetDraft();
     this.editing.set(false);
     this.saveMessage.set('');
   }
 
   saveProfile(): void {
-    // Validate and persist profile changes through AuthService.
     if (!this.draft.firstName.trim() || !this.draft.username.trim() || !this.draft.email.trim()) {
       this.saveMessage.set('First name, username, and email are required.');
       return;
@@ -101,7 +96,6 @@ export class Profile {
   }
 
   private resetDraft(): void {
-    // Synchronize the form draft with the active session.
     const user = this.currentUser();
     if (!user) return;
     this.draft = {
@@ -142,7 +136,6 @@ export class Profile {
   }
 
   private loadProfileActivity(): void {
-    // Load catalog data used by the profile dashboard.
     this.http
       .get<Book[]>('Assets/data/books.json')
       .pipe(catchError(() => of([])))
@@ -153,7 +146,6 @@ export class Profile {
   }
 
   private loadActivity(books: Book[]): void {
-    // Build user or admin statistics from project data files.
     this.http
       .get<Order[]>('Assets/data/orders.json')
       .pipe(catchError(() => of([])))

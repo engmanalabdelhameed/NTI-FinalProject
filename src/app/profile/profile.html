@@ -1,19 +1,17 @@
 <section class="profile-page">
+
   @if (currentUser(); as user) {
-    <!-- Profile dashboard header -->
     <div class="profile-dashboard">
       <header class="dashboard-header">
         <div>
-          <span class="dashboard-kicker"
-            >BOOKNEST / {{ isAdmin ? 'ADMIN PROFILE' : 'MY PROFILE' }}</span
-          >
+          <span class="dashboard-intro">
+            BOOKNEST / {{ isAdmin ? 'ADMIN PROFILE' : 'MY PROFILE' }}
+          </span>
           <h1>{{ isAdmin ? 'Account & administration' : 'My profile' }}</h1>
           <p>
-            {{
-              isAdmin
-                ? 'A clear overview of your account and library operations.'
-                : 'Manage your reader
-                    identity and keep your library details close.'
+            {{isAdmin? 
+              'A clear overview of your account and library operations.': 
+              'Manage your reader identity and keep your library details close.'
             }}
           </p>
         </div>
@@ -23,9 +21,8 @@
       </header>
 
       <div class="dashboard-grid">
-        <!-- User identity card -->
         <aside class="profile-card identity-card">
-          <div class="avatar-wrapper">
+          <div class="avatar-container">
             @if (user.profileImage) {
               <img [src]="user.profileImage" [alt]="fullName" class="profile-avatar" />
             } @else {
@@ -38,8 +35,8 @@
           <p class="user-handle">@{{ user.username }}</p>
 
           <div class="identity-divider"></div>
-          <div class="identity-meta">
-            <span class="status-dot"></span>
+          <div class="identity">
+            <span class="status"></span>
             <span>Account active</span>
           </div>
           <p class="member-note">
@@ -49,24 +46,23 @@
         </aside>
 
         <main class="main-content">
-          <!-- Account statistics -->
           <section class="stats-grid" aria-label="Account statistics">
             <article class="stat-card">
-              <span class="stat-icon">▣</span>
+              <span class="stat-icon" ><i class="fa-solid fa-hashtag"></i></span>
               <div>
                 <strong>{{ stats().first }}</strong
                 ><span>{{ statLabels[0] }}</span>
               </div>
             </article>
             <article class="stat-card">
-              <span class="stat-icon">◷</span>
+              <span class="stat-icon" ><i class="fa-solid fa-clock"></i></span>
               <div>
                 <strong>{{ stats().second }}</strong
                 ><span>{{ statLabels[1] }}</span>
               </div>
             </article>
             <article class="stat-card">
-              <span class="stat-icon">♡</span>
+              <span class="stat-icon" ><i class="fa-solid fa-heart"></i></span>
               <div>
                 <strong>{{ stats().third }}</strong
                 ><span>{{ statLabels[2] }}</span>
@@ -74,11 +70,11 @@
             </article>
           </section>
 
-          <!-- Editable account details -->
+          <!-- account details -->
           <section class="section-card details-card">
             <div class="section-header">
               <div>
-                <span class="section-kicker">ACCOUNT DETAILS</span>
+                <span class="section-intro">ACCOUNT DETAILS</span>
                 <h2>Personal information</h2>
               </div>
               @if (editing()) {
@@ -164,12 +160,12 @@
             </div>
           </section>
 
-          <!-- Shipping address -->
+          <!-- address -->
           @if (user.address) {
             <section class="section-card address-card">
               <div class="section-header">
                 <div>
-                  <span class="section-kicker">DELIVERY DETAILS</span>
+                  <span class="section-intro">DELIVERY DETAILS</span>
                   <h2>Shipping address</h2>
                 </div>
                 <span class="address-mark">⌂</span>
@@ -210,17 +206,17 @@
             </section>
           } @else {
             <section class="section-card empty-address">
-              <span class="section-kicker">DELIVERY DETAILS</span>
+              <span class="section-intro">DELIVERY DETAILS</span>
               <h2>No shipping address yet</h2>
               <p>Add an address when you are ready to place your first order.</p>
             </section>
           }
 
-          <!-- Library activity -->
+          <!-- Library -->
           <section class="section-card library-card">
             <div class="section-header">
               <div>
-                <span class="section-kicker">{{ isAdmin ? 'CATALOGUE' : 'YOUR LIBRARY' }}</span>
+                <span class="section-intro">{{ isAdmin ? 'CATALOGUE' : 'YOUR LIBRARY' }}</span>
                 <h2>{{ isAdmin ? 'Featured catalogue' : 'Your current books' }}</h2>
               </div>
               <a [routerLink]="isAdmin ? '/admin/books' : '/books'" class="view-all">View all</a>
@@ -237,7 +233,7 @@
               </div>
             } @else {
               <div class="empty-shelf">
-                <span>▧</span>
+                <span><i class="fa-solid fa-square"></i></span>
                 <p>Your shelf is ready for its first story.</p>
                 <a routerLink="/books">Explore books</a>
               </div>
