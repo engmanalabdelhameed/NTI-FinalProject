@@ -1,1 +1,599 @@
-<p>orders works!</p>
+<section class="orders-page">
+
+  @if (loading()) {
+    <div class="loading-state">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <p>Loading orders...</p>
+    </div>
+  } @else {
+
+    @if (isAdmin()) {
+
+      <div class="orders-dashboard">
+
+        <header class="orders-header">
+          <div>
+            <span class="orders-intro">BOOKNEST / ADMIN ORDERS</span>
+            <h1>Orders overview</h1>
+            <p>Review customer orders and understand buying activity.</p>
+          </div>
+
+          <a class="library-link" routerLink="/admin/dashboard">
+            Open admin dashboard
+          </a>
+        </header>
+
+        <section class="stats-grid">
+
+          <article class="stat-card">
+            <span class="stat-icon">
+              <i class="fa-solid fa-hashtag"></i>
+            </span>
+
+            <div>
+              <strong>{{ getTotalOrders() }}</strong>
+              <span>Total orders</span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-icon">
+              <i class="fa-solid fa-coins"></i>
+            </span>
+
+            <div>
+              <strong>{{ getTotalSales() | number:'1.0-0' }}</strong>
+              <span>Total sales</span>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-icon">
+              <i class="fa-solid fa-users"></i>
+            </span>
+
+            <div>
+              <strong>{{ getCustomerCount() }}</strong>
+              <span>Customers</span>
+            </div>
+          </article>
+
+        </section>
+
+        <div class="admin-orders-layout">
+
+          <section class="section-card orders-list-card">
+
+            <div class="section-header">
+              <div>
+                <span class="section-intro">CUSTOMER ORDERS</span>
+                <h2>All orders</h2>
+              </div>
+
+              <span class="order-count">
+                {{ orders().length }} orders
+              </span>
+            </div>
+
+            @if (orders().length) {
+
+              <div class="orders-list">
+
+                @for (order of orders(); track order.id) {
+
+                  <button
+                    type="button"
+                    class="order-row"
+                    [class.selected]="selectedOrder()?.id === order.id"
+                    (click)="selectOrder(order)"
+                  >
+
+                    <div class="order-number">
+                      <span>ORDER</span>
+                      <strong>#{{ order.id }}</strong>
+                    </div>
+
+                    <div class="customer-info">
+                      <strong>{{ getCustomerName(order) }}</strong>
+                      <span>
+                        {{ getTotalItems(order) }} items · {{ order.date }}
+                      </span>
+                    </div>
+
+                    <span
+                      class="status"
+                      [class]="getStatusClass(order.status)"
+                    >
+                      {{ order.status }}
+                    </span>
+
+                    <strong class="order-total">
+                      {{ order.total | currency:'EGP':'symbol':'1.0-0' }}
+                    </strong>
+
+                  </button>
+
+                }
+
+              </div>
+
+            } @else {
+
+              <div class="empty-state">
+                <i class="fa-solid fa-box-open"></i>
+                <h3>No customer orders</h3>
+                <p>There are no orders available yet.</p>
+              </div>
+
+            }
+
+          </section>
+
+          @if (selectedOrder(); as order) {
+
+            <section class="section-card order-details-card">
+
+              <div class="section-header">
+
+                <div>
+                  <span class="section-intro">ORDER DETAILS</span>
+                  <h2>#{{ order.id }}</h2>
+                </div>
+
+                <span
+                  class="status"
+                  [class]="getStatusClass(order.status)"
+                >
+                  {{ order.status }}
+                </span>
+
+              </div>
+
+              <div class="detail-block customer-block">
+
+                <span class="detail-label">CUSTOMER</span>
+
+                <div class="customer-profile">
+
+                  @if (order.customer?.profileImage) {
+                    <img
+                      [src]="order.customer?.profileImage"
+                      [alt]="getCustomerName(order)"
+                    />
+                  } @else {
+                    <div class="customer-avatar">
+                      <i class="fa-solid fa-user"></i>
+                    </div>
+                  }
+
+                  <div>
+                    <strong>{{ getCustomerName(order) }}</strong>
+                    <span>{{ order.customer?.email }}</span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="details-grid">
+
+                <div>
+                  <span class="detail-label">ORDER DATE</span>
+                  <strong>{{ order.date }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">PAYMENT</span>
+                  <strong>{{ order.paymentMethod }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">PAYMENT STATUS</span>
+                  <strong>{{ order.paymentStatus }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">SHIPPING</span>
+                  <strong>{{ order.shippingMethod }}</strong>
+                </div>
+
+              </div>
+
+              <div class="items-section">
+
+                <span class="detail-label">BOOKS</span>
+
+                @for (item of order.items; track item.bookId) {
+
+                  <div class="order-item">
+
+                    <img
+                      [src]="getBookImage(item.bookId)"
+                      [alt]="getBookTitle(item.bookId)"
+                    />
+
+                    <div class="item-info">
+                      <strong>{{ getBookTitle(item.bookId) }}</strong>
+                      <span>Quantity: {{ item.quantity }}</span>
+                    </div>
+
+                    <strong>
+                      {{ item.price * item.quantity | currency:'EGP':'symbol':'1.0-0' }}
+                    </strong>
+
+                  </div>
+
+                }
+
+              </div>
+
+              <div class="order-summary">
+
+                <div>
+                  <span>Subtotal</span>
+                  <strong>
+                    {{ order.subtotal | currency:'EGP':'symbol':'1.0-0' }}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Shipping</span>
+                  <strong>
+                    {{ order.shippingCost | currency:'EGP':'symbol':'1.0-0' }}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Discount</span>
+                  <strong>
+                    -{{ order.discount | currency:'EGP':'symbol':'1.0-0' }}
+                  </strong>
+                </div>
+
+                <div class="grand-total">
+                  <span>Total</span>
+                  <strong>
+                    {{ order.total | currency:'EGP':'symbol':'1.0-0' }}
+                  </strong>
+                </div>
+
+              </div>
+
+            </section>
+
+          }
+
+        </div>
+
+      </div>
+
+    }
+
+    @else {
+
+      <div class="orders-dashboard">
+
+        <header class="orders-header">
+          <div>
+            <span class="orders-intro">BOOKNEST / MY ORDERS</span>
+            <h1>My orders</h1>
+            <p>Keep track of your latest purchases and previous orders.</p>
+          </div>
+
+          <a class="library-link" routerLink="/books">
+            Browse books
+          </a>
+        </header>
+
+        @if (orders().length) {
+
+          @if (orders()[0]; as currentOrder) {
+
+            <section class="section-card current-order">
+
+              <div class="section-header">
+
+                <div>
+                  <span class="section-intro">LATEST ORDER</span>
+                  <h2>Order #{{ currentOrder.id }}</h2>
+                  <p class="order-date">
+                    Placed on {{ currentOrder.date }}
+                  </p>
+                </div>
+
+                <span
+                  class="status"
+                  [class]="getStatusClass(currentOrder.status)"
+                >
+                  {{ currentOrder.status }}
+                </span>
+
+              </div>
+
+              <div class="current-order-grid">
+
+                <div class="current-items">
+
+                  @for (item of currentOrder.items; track item.bookId) {
+
+                    <div class="order-item">
+
+                      <img
+                        [src]="getBookImage(item.bookId)"
+                        [alt]="getBookTitle(item.bookId)"
+                      />
+
+                      <div class="item-info">
+                        <strong>{{ getBookTitle(item.bookId) }}</strong>
+                        <span>
+                          Quantity: {{ item.quantity }}
+                        </span>
+                      </div>
+
+                      <strong>
+                        {{ item.price * item.quantity | currency:'EGP':'symbol':'1.0-0' }}
+                      </strong>
+
+                    </div>
+
+                  }
+
+                </div>
+
+                <div class="current-total">
+
+                  <span class="detail-label">ORDER TOTAL</span>
+
+                  <strong>
+                    {{ currentOrder.total | currency:'EGP':'symbol':'1.0-0' }}
+                  </strong>
+
+                  <span>
+                    {{ getTotalItems(currentOrder) }} items
+                  </span>
+
+                </div>
+
+              </div>
+
+              <div class="order-meta">
+
+                <div>
+                  <span class="detail-label">PAYMENT</span>
+                  <strong>{{ currentOrder.paymentMethod }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">PAYMENT STATUS</span>
+                  <strong>{{ currentOrder.paymentStatus }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">SHIPPING</span>
+                  <strong>{{ currentOrder.shippingMethod }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">ESTIMATED DELIVERY</span>
+                  <strong>
+                    {{ currentOrder.estimatedDelivery || 'Not available' }}
+                  </strong>
+                </div>
+
+              </div>
+
+            </section>
+
+          }
+
+          <section class="section-card">
+
+            <div class="section-header">
+
+              <div>
+                <span class="section-intro">ORDER HISTORY</span>
+                <h2>Previous orders</h2>
+              </div>
+
+              <span class="order-count">
+                {{ orders().length }} total
+              </span>
+
+            </div>
+
+            <div class="orders-list">
+
+              @for (order of orders(); track order.id) {
+
+                <button
+                  type="button"
+                  class="order-row"
+                  [class.selected]="selectedOrder()?.id === order.id"
+                  (click)="selectOrder(order)"
+                >
+
+                  <div class="order-number">
+                    <span>ORDER</span>
+                    <strong>#{{ order.id }}</strong>
+                  </div>
+
+                  <div class="customer-info">
+                    <strong>{{ order.date }}</strong>
+                    <span>
+                      {{ getTotalItems(order) }} items
+                    </span>
+                  </div>
+
+                  <span
+                    class="status"
+                    [class]="getStatusClass(order.status)"
+                  >
+                    {{ order.status }}
+                  </span>
+
+                  <strong class="order-total">
+                    {{ order.total | currency:'EGP':'symbol':'1.0-0' }}
+                  </strong>
+
+                </button>
+
+              }
+
+            </div>
+
+          </section>
+
+          @if (selectedOrder(); as order) {
+
+            <section class="section-card order-details-card">
+
+              <div class="section-header">
+
+                <div>
+                  <span class="section-intro">ORDER DETAILS</span>
+                  <h2>Order #{{ order.id }}</h2>
+                </div>
+
+                <span
+                  class="status"
+                  [class]="getStatusClass(order.status)"
+                >
+                  {{ order.status }}
+                </span>
+
+              </div>
+
+              <div class="details-grid">
+
+                <div>
+                  <span class="detail-label">ORDER DATE</span>
+                  <strong>{{ order.date }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">ESTIMATED DELIVERY</span>
+                  <strong>
+                    {{ order.estimatedDelivery || 'Not available' }}
+                  </strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">PAYMENT</span>
+                  <strong>{{ order.paymentMethod }}</strong>
+                </div>
+
+                <div>
+                  <span class="detail-label">SHIPPING</span>
+                  <strong>{{ order.shippingMethod }}</strong>
+                </div>
+
+              </div>
+
+              <div class="items-section">
+
+                <span class="detail-label">ORDER ITEMS</span>
+
+                @for (item of order.items; track item.bookId) {
+
+                  <div class="order-item">
+
+                    <img
+                      [src]="getBookImage(item.bookId)"
+                      [alt]="getBookTitle(item.bookId)"
+                    />
+
+                    <div class="item-info">
+                      <strong>{{ getBookTitle(item.bookId) }}</strong>
+                      <span>Quantity: {{ item.quantity }}</span>
+                    </div>
+
+                    <strong>
+                      {{ item.price * item.quantity | currency:'EGP':'symbol':'1.0-0' }}
+                    </strong>
+
+                  </div>
+
+                }
+
+              </div>
+
+              <div class="details-bottom">
+
+                <div class="address-box">
+
+                  <span class="detail-label">SHIPPING ADDRESS</span>
+
+                  <p>
+                    {{ order.shippingAddress.street }}<br />
+                    {{ order.shippingAddress.city }},
+                    {{ order.shippingAddress.state }}<br />
+                    {{ order.shippingAddress.country }}
+                  </p>
+
+                </div>
+
+                <div class="order-summary">
+
+                  <div>
+                    <span>Subtotal</span>
+                    <strong>
+                      {{ order.subtotal | currency:'EGP':'symbol':'1.0-0' }}
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>Shipping</span>
+                    <strong>
+                      {{ order.shippingCost | currency:'EGP':'symbol':'1.0-0' }}
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>Discount</span>
+                    <strong>
+                      -{{ order.discount | currency:'EGP':'symbol':'1.0-0' }}
+                    </strong>
+                  </div>
+
+                  <div class="grand-total">
+                    <span>Total</span>
+                    <strong>
+                      {{ order.total | currency:'EGP':'symbol':'1.0-0' }}
+                    </strong>
+                  </div>
+
+                </div>
+
+              </div>
+
+              @if (order.trackingNumber) {
+
+                <div class="tracking-box">
+                  <span class="detail-label">TRACKING NUMBER</span>
+                  <strong>{{ order.trackingNumber }}</strong>
+                </div>
+
+              }
+
+            </section>
+
+          }
+
+        } @else {
+
+          <section class="section-card empty-state">
+            <i class="fa-solid fa-box-open"></i>
+            <h2>No orders yet</h2>
+            <p>Your orders will appear here after you make a purchase.</p>
+            <a routerLink="/books">Explore books</a>
+          </section>
+
+        }
+
+      </div>
+
+    }
+
+  }
+
+</section>
