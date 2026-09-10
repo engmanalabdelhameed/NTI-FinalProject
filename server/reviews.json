@@ -54,5 +54,13 @@
     "rating": 4,
     "comment": "wow!",
     "date": "2026-09-09"
+  },
+  {
+    "id": 8,
+    "bookId": 2,
+    "userId": 2,
+    "rating": 2,
+    "comment": "good",
+    "date": "2026-09-10"
   }
 ]

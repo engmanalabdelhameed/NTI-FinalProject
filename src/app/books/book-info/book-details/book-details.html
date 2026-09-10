@@ -158,10 +158,12 @@
                     <!-- WISHLIST -->
 
                     <button
-                        type="button"
-                        class="wishlist"
-                    >
-                        ♡ Add to Wishlist
+                    type="button"
+                    class="wishlist"
+                    (click)="addToWishlist()">
+
+                    {{ wishlistAdded ? '♥ Added to Wishlist' : '♡ Add to Wishlist' }}
+
                     </button>
 
 
@@ -180,26 +182,24 @@
             <div class="tabs">
 
                 <button
-                    type="button"
-                    class="tab active-tab"
-                >
-                    Details
+                type="button"
+                class="tab active-tab">
+                Details
                 </button>
 
-
                 <button
-                    type="button"
-                    class="tab"
-                >
-                    Reviews {{ book.reviews || 0 }}
+                type="button"
+                class="tab"
+                (click)="showBookReviews()">
+
+                Reviews {{ book.reviews || 0 }}
+
                 </button>
 
-
                 <button
-                    type="button"
-                    class="tab"
-                >
-                    Related Books
+                type="button"
+                class="tab">
+                Related Books
                 </button>
 
             </div>
@@ -257,6 +257,14 @@
             </div>
 
         </section>
+
+        @if (showReviews && book) {
+
+            <app-reviews
+                [bookId]="book.id">
+            </app-reviews>
+
+            }
 
 
         <!-- RELATED BOOKS -->
