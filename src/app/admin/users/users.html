@@ -1,119 +1,224 @@
 <div class="users-page">
-  <div class="page-header">
+
+  <!-- HEADER -->
+  <div class="d-flex justify-content-between align-items-end mb-4 page-header">
+
     <div>
-      <span class="page-label"> USER MANAGEMENT </span>
+      <span class="page-label">USER MANAGEMENT</span>
 
-      <h2>Users</h2>
+      <h2 class="page-title">Users</h2>
 
-      <p>View the users registered in your bookstore.</p>
+      <p class="text-muted mb-0">
+        View the users registered in your bookstore.
+      </p>
     </div>
 
-    <div class="user-count">{{ users.length }} Users</div>
+    <div class="user-count">
+      {{ users.length }} Users
+    </div>
+
   </div>
 
-  <div class="user-summary">
-    <div class="summary-card">
-      <span>Total Users</span>
 
-      <strong>
-        {{ users.length }}
-      </strong>
+  <!-- SUMMARY -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-12 col-md-4">
+      <div class="card summary-card h-100 p-3">
+
+        <span class="text-muted small">
+          Total Users
+        </span>
+
+        <strong>
+          {{ users.length }}
+        </strong>
+
+      </div>
     </div>
 
-    <div class="summary-card">
-      <span>Regular Users</span>
 
-      <strong>
-        {{ getUserCount() }}
-      </strong>
+    <div class="col-12 col-md-4">
+      <div class="card summary-card h-100 p-3">
+
+        <span class="text-muted small">
+          Regular Users
+        </span>
+
+        <strong>
+          {{ getUserCount() }}
+        </strong>
+
+      </div>
     </div>
 
-    <div class="summary-card">
-      <span>Administrators</span>
 
-      <strong>
-        {{ getAdminCount() }}
-      </strong>
+    <div class="col-12 col-md-4">
+      <div class="card summary-card h-100 p-3">
+
+        <span class="text-muted small">
+          Administrators
+        </span>
+
+        <strong>
+          {{ getAdminCount() }}
+        </strong>
+
+      </div>
     </div>
+
   </div>
 
-  <div class="users-table-container">
+
+  <!-- TABLE -->
+  <div class="card users-table-container">
+
     @if (loading) {
+
       <div class="empty-state">
+
         <h3>Loading Users...</h3>
 
-        <p>Please wait while the users are loaded.</p>
+        <p>
+          Please wait while the users are loaded.
+        </p>
+
       </div>
 
+
     } @else if (users.length > 0) {
-      <table class="users-table">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Joined</th>
-          </tr>
-        </thead>
 
-        <tbody>
-          @for (user of users; track user.id) {
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle mb-0">
+
+          <thead>
+
             <tr>
-              <td>
-                <div class="user-info">
-                  <div class="avatar">
-                    <img [src]="user.profileImage" [alt]="getFullName(user)" />
-                  </div>
-
-                  <div>
-                    <strong>
-                      {{ getFullName(user) }}
-                    </strong>
-
-                    <span> #{{ user.id }} </span>
-                  </div>
-                </div>
-              </td>
-
-              <td>
-                <span class="username"> @{{ user.username }} </span>
-              </td>
-
-              <td>
-                <span class="email">
-                  {{ user.email }}
-                </span>
-              </td>
-
-              <td>
-                <span class="role" [class.admin]="user.role === 'admin'">
-                  @if (user.role === 'admin') {
-                    Admin
-                  } @else {
-                    User
-                  }
-                </span>
-              </td>
-
-              <td>
-                <span class="joined-date">
-                  {{ user.createdAt | date: 'mediumDate' }}
-                </span>
-              </td>
+              <th>User</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Joined</th>
             </tr>
-          }
-        </tbody>
-      </table>
+
+          </thead>
+
+
+          <tbody>
+
+            @for (user of users; track user.id) {
+
+              <tr>
+
+                <!-- USER -->
+                <td>
+
+                  <div class="d-flex align-items-center gap-3">
+
+                    <div class="avatar">
+
+                      <img
+                        [src]="user.profileImage"
+                        [alt]="getFullName(user)"
+                      />
+
+                    </div>
+
+
+                    <div>
+
+                      <strong class="user-name">
+                        {{ getFullName(user) }}
+                      </strong>
+
+                      <span class="user-id">
+                        #{{ user.id }}
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                </td>
+
+
+                <!-- USERNAME -->
+                <td>
+
+                  <span class="username">
+                    @{{ user.username }}
+                  </span>
+
+                </td>
+
+
+                <!-- EMAIL -->
+                <td>
+
+                  <span class="email">
+                    {{ user.email }}
+                  </span>
+
+                </td>
+
+
+                <!-- ROLE -->
+                <td>
+
+                  <span
+                    class="role"
+                    [class.admin]="user.role === 'admin'"
+                  >
+
+                    @if (user.role === 'admin') {
+                      Admin
+                    } @else {
+                      User
+                    }
+
+                  </span>
+
+                </td>
+
+
+                <!-- JOINED -->
+                <td>
+
+                  <span class="joined-date">
+                    {{ user.createdAt | date: 'mediumDate' }}
+                  </span>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
 
     } @else {
+
+      <!-- EMPTY STATE -->
       <div class="empty-state">
+
         <div class="empty-icon">👥</div>
 
         <h3>No Users Found</h3>
 
-        <p>There are currently no registered users.</p>
+        <p>
+          There are currently no registered users.
+        </p>
+
       </div>
+
     }
+
   </div>
+
 </div>

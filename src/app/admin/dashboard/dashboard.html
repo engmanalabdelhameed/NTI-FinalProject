@@ -1,51 +1,152 @@
-<div class="dashboard"> <!-- HEADER -->
-  <div class="header">
-    <h2>Dashboard</h2>
-    <p>Welcome to your bookstore dashboard.</p>
-  </div> <!-- STATISTICS -->
-  <div class="stats">
-    <div class="card">
-      <div class="icon">💰</div>
-      <div>
-        <p>Total Sales</p>
-        <h3>{{ totalSales | currency:'EGP':'symbol':'1.0-0' }}</h3>
-      </div>
-    </div>
-    <div class="card">
-      <div class="icon">📦</div>
-      <div>
-        <p>Total Orders</p>
-        <h3>{{ totalOrders }}</h3>
-      </div>
-    </div>
-    <div class="card">
-      <div class="icon">👥</div>
-      <div>
-        <p>Total Users</p>
-        <h3>{{ totalUsers }}</h3>
-      </div>
-    </div>
-    <div class="card">
-      <div class="icon">📚</div>
-      <div>
-        <p>Total Books</p>
-        <h3>{{ totalBooks }}</h3>
-      </div>
-    </div>
-  </div> <!-- SALES -->
-  <div class="section">
-    <h3>Sales Overview</h3>
-    <p>Sales by month</p>
-    <div class="chart"> @for (item of salesByMonth; track item.month) { <div class="bar-container"> <span
-          class="sales-number"> {{ item.sales | currency:'EGP':'symbol':'1.0-0' }} </span>
-        <div class="bar" [style.height.%]="getBarHeight(item.sales)"></div> <span class="month"> {{ item.month }}
-        </span>
-      </div> } </div>
-  </div> <!-- BEST SELLING BOOKS -->
-  <div class="section">
-    <h3>Best Selling Books</h3>
-    <p>Most purchased books</p> @if (topBooks.length > 0) { <div class="books"> @for (book of topBooks; track
-      book.title) { <div class="book"> <span class="book-name"> {{ book.title }} </span> <span class="sold"> {{
-          book.quantity }} sold </span> </div> } </div> } @else { <p>No sales data available.</p> }
+<div class="dashboard">
+
+  <!-- HEADER -->
+  <div class="mb-4">
+    <h2 class="dashboard-title">Dashboard</h2>
+    <p class="text-muted">Welcome to your bookstore dashboard.</p>
   </div>
+
+
+  <!-- STATS -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-12 col-md-6 col-xl-3">
+      <div class="card h-100 p-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon">💰</div>
+
+          <div>
+            <p class="text-muted small mb-1">Total Sales</p>
+            <h3 class="dashboard-number">
+              {{ totalSales | currency:'EGP':'symbol':'1.0-0' }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 col-md-6 col-xl-3">
+      <div class="card h-100 p-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon">📦</div>
+
+          <div>
+            <p class="text-muted small mb-1">Total Orders</p>
+            <h3 class="dashboard-number">
+              {{ totalOrders }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 col-md-6 col-xl-3">
+      <div class="card h-100 p-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon">👥</div>
+
+          <div>
+            <p class="text-muted small mb-1">Total Users</p>
+            <h3 class="dashboard-number">
+              {{ totalUsers }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 col-md-6 col-xl-3">
+      <div class="card h-100 p-3">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon">📚</div>
+
+          <div>
+            <p class="text-muted small mb-1">Total Books</p>
+            <h3 class="dashboard-number">
+              {{ totalBooks }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- SALES OVERVIEW -->
+  <div class="card p-4 mb-4">
+
+    <h3 class="section-title">Sales Overview</h3>
+    <p class="text-muted small">Sales by month</p>
+
+    <div class="chart">
+
+      @for (item of salesByMonth; track item.month) {
+
+        <div class="bar-container">
+
+          <span class="sales-number">
+            {{ item.sales | currency:'EGP':'symbol':'1.0-0' }}
+          </span>
+
+          <div
+            class="bar"
+            [style.height.%]="getBarHeight(item.sales)">
+          </div>
+
+          <span class="month">
+            {{ item.month }}
+          </span>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+
+  <!-- BEST SELLING BOOKS -->
+  <div class="card p-4 mb-4">
+
+    <h3 class="section-title">Best Selling Books</h3>
+    <p class="text-muted small">Most purchased books</p>
+
+
+    @if (topBooks.length > 0) {
+
+      <div class="books mt-3">
+
+        @for (book of topBooks; track book.title) {
+
+          <div class="book d-flex justify-content-between py-3 border-bottom">
+
+            <span class="book-name">
+              {{ book.title }}
+            </span>
+
+            <span class="sold">
+              {{ book.quantity }} sold
+            </span>
+
+          </div>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <p class="text-muted mt-3">
+        No sales data available.
+      </p>
+
+    }
+
+  </div>
+
 </div>

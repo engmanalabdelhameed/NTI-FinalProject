@@ -1,30 +1,68 @@
 <div class="admin-page">
-  <div class="admin-header">
+
+  <!-- HEADER -->
+  <div class="d-flex justify-content-between align-items-start gap-4 mb-4 admin-header">
+
     <div>
-      <span class="admin-label"> LIBRARY </span>
+      <span class="admin-label">LIBRARY</span>
 
       <h1>Admin Panel</h1>
 
-      <p>Manage your bookstore from one place.</p>
+      <p class="text-muted mb-0">
+        Manage your bookstore from one place.
+      </p>
     </div>
 
-    <button type="button" class="admin-logout" (click)="authService.logout()">
+    <button
+      type="button"
+      class="btn admin-logout"
+      (click)="authService.logout()"
+    >
       <span aria-hidden="true">↪</span>
       Sign out
     </button>
+
   </div>
 
+
+  <!-- NAVIGATION -->
   <nav class="admin-nav">
-    <a routerLink="dashboard" routerLinkActive="active"> Dashboard </a>
 
-    <a routerLink="books" routerLinkActive="active"> Books </a>
+    <a
+      routerLink="/admin/dashboard"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Dashboard
+    </a>
 
-    <a routerLink="users" routerLinkActive="active"> Users </a>
+    <a
+      routerLink="/admin/books"
+      routerLinkActive="active"
+    >
+      Books
+    </a>
 
-    <a routerLink="orders" routerLinkActive="active"> Orders </a>
+    <a
+      routerLink="/admin/users"
+      routerLinkActive="active"
+    >
+      Users
+    </a>
+
+    <a
+      routerLink="/admin/orders"
+      routerLinkActive="active"
+    >
+      Orders
+    </a>
+
   </nav>
 
+
+  <!-- CONTENT -->
   <div class="admin-content">
     <router-outlet></router-outlet>
   </div>
+
 </div>

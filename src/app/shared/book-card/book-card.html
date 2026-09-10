@@ -19,20 +19,8 @@
       >
     </div>
 
-    <button
-      class="wishlist"
-      [class.active]="isWishlisted"
-      (click)="onWishlistClick()"
-      [attr.aria-label]="
-        isWishlisted
-          ? 'Remove from wishlist'
-          : 'Add to wishlist'
-      "
-    >
-      {{ isWishlisted ? '♥' : '♡' }}
-    </button>
-
   </div>
+
 
   <div class="book-info">
 
@@ -47,6 +35,7 @@
     <p class="author">
       {{ book.author }}
     </p>
+
 
     <div class="rating">
 
@@ -66,18 +55,12 @@
 
     </div>
 
+
     <div class="book-bottom">
 
       <span class="price">
         {{ book.price | currency:'EGP':'symbol':'1.2-2' }}
       </span>
-
-      <button
-        class="add-cart"
-        (click)="onAddToCart()"
-      >
-        + Cart
-      </button>
 
     </div>
 

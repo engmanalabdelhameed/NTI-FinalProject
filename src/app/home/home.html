@@ -1,58 +1,89 @@
 <div class="home-container">
+
   <!-- Hero Section -->
   <section class="hero">
+
     <div class="hero-content">
       <h1>Your Next Chapter Starts Here.</h1>
-      <p>Discover stories, ideas, and knowledge that stay with you.</p>
+
+      <p>
+        Discover stories, ideas, and knowledge that stay with you.
+      </p>
+
       <div class="hero-actions">
-        <a routerLink="/books" class="btn btn-primary">Explore Books</a>
-        <a href="#categories" class="btn btn-outline">Browse Categories</a>
+        <a
+          routerLink="/books"
+          class="btn btn-primary">
+          Explore Books
+        </a>
+
+        <a
+          href="#categories"
+          class="btn btn-outline">
+          Browse Categories
+        </a>
       </div>
     </div>
+
     <div class="hero-image">
-      <img src="/Assets/images/hero-books.jpg" alt="Beautiful books">
+      <img
+        src="/Assets/images/hero-books.jpg"
+        alt="Beautiful books">
     </div>
+
   </section>
+
 
   <!-- Categories Section -->
-  <section id="categories" class="categories-section">
+  <section
+    id="categories"
+    class="categories-section">
+
     <h2>Categories</h2>
+
     <div class="categories-grid">
+
       @for (cat of categories; track cat.name) {
-        <a [routerLink]="['/books']" [queryParams]="{category: cat.name}" class="category-card">
+
+        <a
+          [routerLink]="['/books']"
+          [queryParams]="{ category: cat.name }"
+          class="category-card">
+
           <h3>{{ cat.name }}</h3>
+
         </a>
+
       }
+
     </div>
+
   </section>
+
 
   <!-- Featured Books -->
-  <section class="books-section">
-    <h2>Featured Books</h2>
-    <div class="books-grid">
-      @for (book of featuredBooks; track book.id) {
-        <app-book-card [book]="book" [routerLink]="['/books', book.id]" class="clickable-card"></app-book-card>
-      }
-    </div>
-  </section>
+  <!-- Featured Books -->
+<section class="books-section">
 
-  <!-- Best Sellers -->
-  <section class="books-section">
-    <h2>Best Sellers</h2>
-    <div class="books-grid">
-      @for (book of bestSellers; track book.id) {
-        <app-book-card [book]="book" badge="Top Rated" badgeType="sale" [routerLink]="['/books', book.id]" class="clickable-card"></app-book-card>
-      }
-    </div>
-  </section>
+  <h2>Featured Books</h2>
 
-  <!-- New Arrivals -->
-  <section class="books-section">
-    <h2>New Arrivals</h2>
-    <div class="books-grid">
-      @for (book of newArrivals; track book.id) {
-        <app-book-card [book]="book" badge="New" badgeType="new" [routerLink]="['/books', book.id]" class="clickable-card"></app-book-card>
-      }
-    </div>
-  </section>
+  <div class="books-grid">
+
+    @for (book of featuredBooks; track book.id) {
+
+      <app-book-card
+        [book]="book"
+        [routerLink]="['/books', book.id, 'details']"
+        class="clickable-card">
+      </app-book-card>
+
+    }
+
+  </div>
+
+</section>
+
+
+  
+
 </div>

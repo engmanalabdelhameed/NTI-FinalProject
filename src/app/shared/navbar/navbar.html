@@ -1,54 +1,97 @@
-<nav class="navbar">
+<nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
+  <div class="container-fluid px-4 px-lg-5">
 
-  <div class="navbar-brand">
-    <a routerLink="/">Library</a>
+    <a routerLink="/" class="navbar-brand fw-bold">
+      Library
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <div class="navbar-nav mx-auto gap-lg-3">
+
+        <a
+          routerLink="/home"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link"
+        >
+          Home
+        </a>
+
+        <a
+          routerLink="/books"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          Books
+        </a>
+
+        <a
+          routerLink="/wishlist"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          Wishlist
+        </a>
+
+        <a
+          routerLink="/orders"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          My Orders
+        </a>
+
+        <a
+          routerLink="/about"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          About
+        </a>
+
+      </div>
+
+      <div class="d-flex align-items-center gap-3">
+
+        <a routerLink="/cart" class="nav-link">
+          Cart
+        </a>
+
+        @if (authService.isAuthenticated()) {
+
+          <a routerLink="/profile" class="profile-link">
+            {{ authService.user()?.firstName }}
+          </a>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="authService.logout()"
+          >
+            Logout
+          </button>
+
+        } @else {
+
+          <a routerLink="/auth/login" class="btn btn-primary">
+            Login
+          </a>
+
+        }
+
+      </div>
+
+    </div>
+
   </div>
-
-  <div class="navbar-links">
-
-    <a routerLink="/home" routerLinkActive="active"
-       [routerLinkActiveOptions]="{ exact: true }">
-      Home
-    </a>
-
-    <a routerLink="/books" routerLinkActive="active">
-      Books
-    </a>
-
-    <a routerLink="/wishlist" routerLinkActive="active">
-      Wishlist
-    </a>
-
-    <a routerLink="/orders" routerLinkActive="active">
-      My Orders
-    </a>
-
-    <a routerLink="/about" routerLinkActive="active">
-      About
-    </a>
-
-  </div>
-
-  <div class="navbar-actions">
-
-    <a routerLink="/cart" class="cart-link">
-      Cart
-    </a>
-
-    @if (authService.isAuthenticated()) {
-      <a routerLink="/profile" class="profile-link">
-        {{ authService.user()?.firstName }}
-      </a>
-
-      <button type="button" class="login-btn" (click)="authService.logout()">
-        Logout
-      </button>
-    } @else {
-      <a routerLink="/auth/login" class="login-btn">
-        Login
-      </a>
-    }
-
-  </div>
-
 </nav>
