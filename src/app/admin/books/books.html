@@ -34,8 +34,9 @@
               <th>Book</th>
               <th>Category</th>
               <th>Price</th>
-              <th>Stock</th>
+              <th>Pages</th>
               <th>Rating</th>
+              <th>Reviews</th>
             </tr>
           </thead>
 
@@ -89,23 +90,11 @@
                 </td>
 
 
-                <!-- STOCK -->
+                <!-- PAGES -->
                 <td>
-
-                  <span
-                    class="stock"
-                    [class.low-stock]="book.stock <= 5"
-                    [class.out-of-stock]="book.stock === 0"
-                  >
-
-                    @if (book.stock === 0) {
-                      Out of stock
-                    } @else {
-                      {{ book.stock }}
-                    }
-
+                  <span class="pages">
+                    {{ book.pages }}
                   </span>
-
                 </td>
 
 
@@ -122,6 +111,14 @@
 
                   </div>
 
+                </td>
+
+
+                <!-- REVIEWS -->
+                <td>
+                  <span class="reviews">
+                    {{ book.reviews }}
+                  </span>
                 </td>
 
               </tr>

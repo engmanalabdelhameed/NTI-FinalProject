@@ -136,25 +136,6 @@
   white-space: nowrap;
 }
 
-
-/* STOCK */
-
-.stock {
-  color: #172554;
-  font-weight: 700;
-}
-
-.stock.low-stock {
-  color: #c27a4a;
-}
-
-.stock.out-of-stock {
-  color: #e11d48;
-}
-
-
-/* RATING */
-
 .rating {
   display: flex;
   align-items: center;
