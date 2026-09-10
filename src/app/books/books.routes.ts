@@ -6,19 +6,20 @@ export const BOOKS_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./book-list/book-list').then(m => m.BookList)
+      import('./book-list/browse-books')
+        .then(m => m.browsebooks)
   },
 
   // /books/:id
   {
     path: ':id',
     loadComponent: () =>
-      import('./book-info/book-info').then(m => m.BookInfo),
+      import('./book-info/book-info')
+        .then(m => m.BookInfo),
 
     children: [
 
       // /books/:id
-      // Automatically goes to details
       {
         path: '',
         redirectTo: 'details',
@@ -43,4 +44,5 @@ export const BOOKS_ROUTES: Routes = [
 
     ]
   }
+
 ];

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-book-info',
+  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './book-info.html',
   styleUrl: './book-info.css'
