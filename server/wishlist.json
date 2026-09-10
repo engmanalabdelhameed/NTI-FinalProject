@@ -1,7 +1,10 @@
 [
   {
     "userId": 2,
-    "bookIds": []
+    "bookIds": [
+      2,
+      1
+    ]
   },
   {
     "userId": 3,

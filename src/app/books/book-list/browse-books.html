@@ -1,59 +1,176 @@
-<div class="page"> <!-- HEADER -->
-  <header class="header">
-    <div class="logo">
-      <div class="logo-icon">📖</div> <span>The Nile Reader</span>
-    </div>
-    <nav> <a routerLink="/browse-books">Home</a> <a>Categories</a> <a routerLink="/browse-books"
-        class="active">Books</a> <a>Authors</a> <a>Special Offers</a> </nav>
-    <div class="header-icons"> <span>⌕</span> <span>♙</span> <span>♧</span> </div>
-  </header> <!-- MAIN -->
+<div class="page">
+
   <main class="main">
-    <h1>Browse Our Books</h1> <!-- SEARCH -->
-    <div class="search-box"> <input type="text" [(ngModel)]="searchText" (input)="searchBooks()"
-        placeholder="Search for books, authors, or genres..."> <button type="button"> ⌕ </button> </div>
+
+    <h1>Browse Our Books</h1>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="searchBooks()"
+        placeholder="Search for books, authors, or genres..."
+      >
+      <button type="button">⌕</button>
+    </div>
+
     <!-- CONTENT -->
-    <div class="content"> <!-- SIDEBAR -->
+    <div class="content">
+
+      <!-- SIDEBAR -->
       <aside class="sidebar">
-        <h3>Categories</h3> <label> <input type="radio" name="category" (change)="selectcategory('Arabic Literature')">
-          Arabic Literature </label> <label> <input type="radio" name="category"
-            (change)="selectcategory('World Classics')"> World Classics </label> <label> <input type="radio"
-            name="category" (change)="selectcategory('Historical Books')"> Historical Books </label> <label> <input
-            type="radio" name="category" (change)="selectcategory('Fantasy & Sci-Fi')"> Fantasy & Sci-Fi </label>
-        <label> <input type="radio" name="category" (change)="selectcategory('Self Help')"> Self Help </label> <label>
-          <input type="radio" name="category" (change)="selectcategory('Biography')"> Biography </label> <!-- PRICE -->
+
+        <h3>Categories</h3>
+
+        <label>
+          <input
+            type="radio"
+            name="category"
+            (change)="selectcategory('Arabic Literature')"
+          >
+          Arabic Literature
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="category"
+            (change)="selectcategory('World Classics')"
+          >
+          World Classics
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="category"
+            (change)="selectcategory('Historical Books')"
+          >
+          Historical Books
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="category"
+            (change)="selectcategory('Fantasy & Sci-Fi')"
+          >
+          Fantasy & Sci-Fi
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="category"
+            (change)="selectcategory('Self Help')"
+          >
+          Self Help
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="category"
+            (change)="selectcategory('Biography')"
+          >
+          Biography
+        </label>
+
+        <!-- PRICE -->
         <div class="filter-section">
-          <h3>Price Range</h3> <label> <input type="radio" name="price" (change)="selectprice('200-400')"> 200EGP -
-            400EGP </label> <label> <input type="radio" name="price" (change)="selectprice('400-600')"> 400EGP - 600EGP
-          </label> <label> <input type="radio" name="price" (change)="selectprice('600-800')"> 600EGP - 800EGP </label>
-        </div> <button class="apply-btn" (click)="applyfilter()" type="button"> Apply </button> <button
-          class="clear-btn" (click)="clearFilters()" type="button"> Clear Filters </button>
-      </aside> 
+
+          <h3>Price Range</h3>
+
+          <label>
+            <input
+              type="radio"
+              name="price"
+              (change)="selectprice('200-400')"
+            >
+            200EGP - 400EGP
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="price"
+              (change)="selectprice('400-600')"
+            >
+            400EGP - 600EGP
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="price"
+              (change)="selectprice('600-800')"
+            >
+            600EGP - 800EGP
+          </label>
+
+        </div>
+
+        <button
+          class="apply-btn"
+          (click)="applyfilter()"
+          type="button"
+        >
+          Apply
+        </button>
+
+        <button
+          class="clear-btn"
+          (click)="clearFilters()"
+          type="button"
+        >
+          Clear Filters
+        </button>
+
+      </aside>
+
       <!-- BOOKS -->
-      <section class="books-grid"> @for (book of filteredbooks; track book.id) { <div class="book-card"> <img
-            [src]="book.image" [alt]="book.title">
-          <h3> {{ book.title }} </h3>
-          <p class="author"> {{ book.author }} </p>
-          <p class="price"> {{ book.price }} EGP </p> <button [routerLink]="['/books', book.id, 'details']"
-            class="details-btn"> View Details </button>
-        </div> } @if (filteredbooks.length === 0) { <div class="no-books">
-          <h3>No books found</h3>
-          <p>Try changing your search or filters.</p>
-        </div> } </section>
+      <section class="books-grid">
+
+        @for (book of filteredbooks; track book.id) {
+
+          <div class="book-card">
+
+            <img
+              [src]="book.image"
+              [alt]="book.title"
+            >
+
+            <h3>{{ book.title }}</h3>
+
+            <p class="author">{{ book.author }}</p>
+
+            <p class="price">{{ book.price }} EGP</p>
+
+            <button
+              [routerLink]="['/books', book.id, 'details']"
+              class="details-btn"
+            >
+              View Details
+            </button>
+
+          </div>
+
+        }
+
+        @if (filteredbooks.length === 0) {
+
+          <div class="no-books">
+            <h3>No books found</h3>
+            <p>Try changing your search or filters.</p>
+          </div>
+
+        }
+
+      </section>
+
     </div>
-  </main> 
-  <footer class="footer">
-    <div class="footer-column">
-      <h3>📖 The Nile Reader</h3>
-      <p> Your sanctuary for classic literature, timeless stories, and extraordinary books. </p>
-    </div>
-    <div class="footer-column">
-      <h4>Quick Links</h4> <a>Home</a> <a>Categories</a> <a>Featured Books</a>
-    </div>
-    <div class="footer-column">
-      <h4>Categories</h4> <a>Arabic Literature</a> <a>World Classics</a> <a>Historical Books</a>
-    </div>
-    <div class="footer-column">
-      <h4>Customer Care</h4> <a>Contact Us</a> <a>Shipping Policy</a> <a>Returns & Refunds</a>
-    </div>
-  </footer>
+
+  </main>
+
 </div>
