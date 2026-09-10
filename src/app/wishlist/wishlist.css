@@ -3,7 +3,7 @@
 ========================= */
 
 .wishlist-page {
-  background: #f8f5ec;
+  background: #e4f1f8;
   min-height: 100vh;
   padding: 55px 7%;
   color: #17313b;
@@ -27,7 +27,7 @@
 }
 
 .eyebrow {
-  color: #a67832;
+  color:  #17313b;
   font-size: 11px;
   font-weight: 700;
 
@@ -58,14 +58,14 @@
   width: 115px;
   height: 115px;
 
-  border: 1px solid #c7bda9;
+  border: 1px solid  #17313b;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  background: #fffdf8;
+  background: #f8fcfd;
 }
 
 .wishlist-count span {
@@ -74,7 +74,7 @@
   font-size: 30px;
   font-weight: bold;
 
-  color: #a67832;
+  color:  #17313b;
 }
 
 .wishlist-count small {
@@ -116,11 +116,11 @@
 }
 
 .clear-btn {
-  background: transparent;
+  background: #f8fcfd;
 
-  border: 1px solid #b7aa94;
+  border: 1px solid  #17313b;
 
-  color: #6e5a3c;
+  color:  #17313b;
 
   padding: 9px 18px;
 
@@ -130,7 +130,9 @@
 }
 
 .clear-btn:hover {
-  background: #eee7d8;
+  background:  #17313b;
+  color: white;
+  transition: 0.2s ease ease-in-out;
 }
 
 
@@ -213,7 +215,7 @@
 
   background: #fffdf8;
 
-  color: #9b7336;
+  color:  #17313b;
 
   cursor: pointer;
 
@@ -223,7 +225,7 @@
 }
 
 .remove-btn:hover {
-  background: #9b7336;
+  background: #17313b;
   color: white;
 }
 
@@ -243,7 +245,7 @@
 
   letter-spacing: 1.3px;
 
-  color: #9b7336;
+  color:  #17313b;
 }
 
 .book-info h3 {
@@ -278,7 +280,7 @@
 }
 
 .stars {
-  color: #b27d2f;
+  color:  #17313b;
 
   letter-spacing: 1px;
 
@@ -315,7 +317,7 @@
 .view-btn {
   border: none;
 
-  background: #ad7d36;
+  background:  #17313b;
 
   color: white;
 
@@ -327,7 +329,7 @@
 }
 
 .view-btn:hover {
-  background: #8d6428;
+  background:  #17313b;
 }
 
 
