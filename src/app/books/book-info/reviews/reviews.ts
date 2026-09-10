@@ -1,7 +1,11 @@
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  Input
+} from '@angular/core';
 
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ReviewsService } from '../../../services/reviews.service';
 
 @Component({
@@ -13,26 +17,28 @@ import { ReviewsService } from '../../../services/reviews.service';
 })
 export class Reviews implements OnInit {
 
+  @Input() bookId!: number;
+
   reviews: any[] = [];
 
   selectedRating = 0;
   reviewText = '';
 
   constructor(
-    private route: ActivatedRoute,
     private reviewsService: ReviewsService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
 
-    const bookId = Number(
-      this.route.parent?.snapshot.paramMap.get('id')
-    );
+    console.log('BOOK ID:', this.bookId);
 
-    console.log('BOOK ID:', bookId);
+    this.loadReviews();
+  }
 
-    this.reviewsService.getBookReviews(bookId).subscribe({
+  loadReviews() {
+
+    this.reviewsService.getBookReviews(this.bookId).subscribe({
       next: (data) => {
 
         console.log('REVIEWS FROM SERVICE:', data);
@@ -54,12 +60,8 @@ export class Reviews implements OnInit {
 
   submitReview() {
 
-    const bookId = Number(
-      this.route.parent?.snapshot.paramMap.get('id')
-    );
-
     const newReview = {
-      bookId: bookId,
+      bookId: this.bookId,
       userId: 2,
       rating: this.selectedRating,
       comment: this.reviewText,
@@ -85,4 +87,3 @@ export class Reviews implements OnInit {
     });
   }
 }
-
